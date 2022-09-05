@@ -1,15 +1,37 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
+import Header from "../components/Header";
+import { Text, View } from "../components/Themed";
+import { RootTabScreenProps } from "../types";
+import Axios from "axios";
+import Search from "../components/Search";
+import TodaysCard from "../components/TodaysCard";
 
-export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
+// Axios call test
+
+// const options = {
+//   method: "GET",
+//   url: "https://exercisedb.p.rapidapi.com/exercises",
+//   headers: {
+//     "X-RapidAPI-Key": "710565457fmshac65682c3fefbefp1e7d6ejsnfa6dd6e2a3e5",
+//     "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
+//   },
+// };
+
+// Axios.request(options)
+//   .then(function (response) {
+//     console.log("Response", response.data);
+//   })
+//   .catch(function (error) {
+//     console.error("Error", error);
+//   });
+
+export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/HomeScreen.tsx" />
+      <Header />
+      <Search />
+      <TodaysCard />
     </View>
   );
 }
@@ -17,16 +39,16 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'Home'>) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   separator: {
     marginVertical: 30,
     height: 1,
-    width: '80%',
+    width: "80%",
   },
 });
