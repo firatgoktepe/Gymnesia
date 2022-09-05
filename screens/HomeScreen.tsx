@@ -13,8 +13,8 @@ import TodaysCard from "../components/TodaysCard";
 //   method: "GET",
 //   url: "https://exercisedb.p.rapidapi.com/exercises",
 //   headers: {
-//     "X-RapidAPI-Key": "710565457fmshac65682c3fefbefp1e7d6ejsnfa6dd6e2a3e5",
-//     "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
+//     "X-RapidAPI-Key": "Some key",
+//     "X-RapidAPI-Host": "example.com",
 //   },
 // };
 
