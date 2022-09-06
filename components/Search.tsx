@@ -21,7 +21,10 @@ export default function Search() {
 const styles = StyleSheet.create({
   searchSection: {
     width: "100%",
-    padding: 20,
+    paddingLeft: 25,
+    paddingRight: 25,
+    paddingTop: 5,
+    paddingBottom: 5,
     flexDirection: "row",
   },
   searchIcon: {

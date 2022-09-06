@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 
 import Header from "../components/Header";
 import { Text, View } from "../components/Themed";
@@ -6,6 +6,7 @@ import { RootTabScreenProps } from "../types";
 import Axios from "axios";
 import Search from "../components/Search";
 import TodaysCard from "../components/TodaysCard";
+import FeaturedCard from "../components/FeaturedCard";
 
 // Axios call test
 
@@ -28,19 +29,18 @@ import TodaysCard from "../components/TodaysCard";
 
 export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Header />
       <Search />
       <TodaysCard />
-    </View>
+      <FeaturedCard />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
   },
   title: {
     fontSize: 20,

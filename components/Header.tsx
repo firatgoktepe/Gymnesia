@@ -32,7 +32,7 @@ export default function Header() {
               lightColor="rgba(0,0,0,0.8)"
               darkColor="rgba(255,255,255,0.8)"
             >
-              Good Morning!
+              Good Morning
             </MonoText>
           </View>
         </View>
@@ -43,7 +43,7 @@ export default function Header() {
               opacity: pressed ? 0.5 : 1,
             })}
           >
-            <Ionicons name="notifications-outline" size={34} color="black" />
+            <Ionicons name="notifications-outline" size={30} color="black" />
           </Pressable>
         </View>
       </View>
@@ -53,7 +53,10 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   profileContainer: {
-    padding: 20,
+    paddingLeft: 25,
+    paddingRight: 25,
+    paddingTop: 5,
+    paddingBottom: 5,
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
@@ -72,12 +75,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     lineHeight: 24,
     textAlign: "center",
-    color: `${Colors.light.text}`,
   },
   profileText: {
     fontSize: 14,
     lineHeight: 24,
-    color: `${Colors.light.text}`,
   },
   notification: {
     justifyContent: "center",

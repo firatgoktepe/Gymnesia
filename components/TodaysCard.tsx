@@ -10,7 +10,7 @@ import WorkoutCard from "./WorkoutCard";
 export default function TodaysCard() {
   return (
     <View style={styles.profileContainer}>
-      <HeadingText>Todays Session</HeadingText>
+      <HeadingText style={styles.headingText}>Todays Session</HeadingText>
       <WorkoutCard />
     </View>
   );
@@ -18,31 +18,15 @@ export default function TodaysCard() {
 
 const styles = StyleSheet.create({
   profileContainer: {
-    padding: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 5,
+    paddingBottom: 5,
     flexDirection: "column",
     width: "100%",
     justifyContent: "space-between",
   },
-  profilePerson: {
-    flexDirection: "row",
-  },
-  profileLogo: {
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-    marginRight: 10,
-  },
-  profileHeading: {
-    fontSize: 17,
-    fontWeight: "bold",
-    lineHeight: 24,
-    textAlign: "center",
-  },
-  profileText: {
-    fontSize: 14,
-    lineHeight: 24,
-  },
-  notification: {
-    justifyContent: "center",
+  headingText: {
+    marginBottom: 20,
   },
 });
