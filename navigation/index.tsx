@@ -16,7 +16,7 @@ import { ColorSchemeName, Pressable } from "react-native";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import ModalScreen from "../screens/ModalScreen";
+import ModalDetailsScreen from "../screens/ModalDetailsScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import HomeScreen from "../screens/HomeScreen";
 import TimerScreen from "../screens/TimerScreen";
@@ -64,7 +64,7 @@ function RootNavigator() {
         options={{ title: "Oops!" }}
       />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="Details" component={ModalDetailsScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -92,21 +92,21 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<"Home">) => ({
           title: "Home",
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate("Modal")}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
+          // headerRight: () => (
+          //   <Pressable
+          //     onPress={() => navigation.navigate("ModalDetails")}
+          //     style={({ pressed }) => ({
+          //       opacity: pressed ? 0.5 : 1,
+          //     })}
+          //   >
+          //     <FontAwesome
+          //       name="info-circle"
+          //       size={25}
+          //       color={Colors[colorScheme].text}
+          //       style={{ marginRight: 15 }}
+          //     />
+          //   </Pressable>
+          // ),
         })}
       />
       <BottomTab.Screen

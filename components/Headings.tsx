@@ -11,7 +11,6 @@ export function HeadingText(props: TextProps) {
           fontFamily: "inter-regular",
           fontWeight: "bold",
           fontSize: 22,
-          color: `${Colors.light.text}`,
         },
       ]}
     />

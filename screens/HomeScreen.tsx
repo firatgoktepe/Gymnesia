@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView, Pressable } from "react-native";
 
 import Header from "../components/Header";
 import { Text, View } from "../components/Themed";
@@ -32,7 +32,9 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
     <ScrollView style={styles.container}>
       <Header />
       <Search />
-      <TodaysCard />
+      <Pressable onPress={() => navigation.navigate("Details")}>
+        <TodaysCard />
+      </Pressable>
       <FeaturedCard />
     </ScrollView>
   );
