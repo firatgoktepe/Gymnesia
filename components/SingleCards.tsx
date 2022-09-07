@@ -3,8 +3,9 @@ import Colors from "../constants/Colors";
 import { MonoText } from "./StyledText";
 import { View } from "./Themed";
 import { workouts } from "../db";
+import SingleCard from "./SingleCard";
 
-interface WorkoutsDb {
+export interface WorkoutsDb {
   calories: number;
   imageLink: any;
   title: string;
@@ -18,19 +19,7 @@ export default function SingleCards() {
   return (
     <View style={styles.cardContainer}>
       {workouts.map((workout: WorkoutsDb) => (
-        <ImageBackground
-          key={workout.id}
-          source={workout.imageLink}
-          style={styles.image}
-          imageStyle={{ borderRadius: 10 }}
-        >
-          <MonoText style={styles.profileTitle}>
-            {workout.title}
-            <MonoText
-              style={styles.profileText}
-            >{`  ${workout.task} Task`}</MonoText>
-          </MonoText>
-        </ImageBackground>
+        <SingleCard key={workout.id} workout={workout} />
       ))}
     </View>
   );

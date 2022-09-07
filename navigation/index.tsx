@@ -17,6 +17,7 @@ import { ColorSchemeName, Pressable } from "react-native";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import ModalDetailsScreen from "../screens/ModalDetailsScreen";
+import ModalFeaturedDetails from "../screens/ModalFeaturedDetails";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import HomeScreen from "../screens/HomeScreen";
 import TimerScreen from "../screens/TimerScreen";
@@ -65,6 +66,9 @@ function RootNavigator() {
       />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name="Details" component={ModalDetailsScreen} />
+      </Stack.Group>
+      <Stack.Group screenOptions={{ presentation: "modal" }}>
+        <Stack.Screen name="Workout" component={ModalFeaturedDetails} />
       </Stack.Group>
     </Stack.Navigator>
   );

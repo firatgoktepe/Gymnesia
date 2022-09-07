@@ -6,6 +6,7 @@ import Search from "./Search";
 import { HeadingText } from "../components/Headings";
 import SingleCards from "./SingleCards";
 import { workouts } from "../db";
+import { RootStackScreenProps } from "../types";
 
 export default function FeaturedCard() {
   return (

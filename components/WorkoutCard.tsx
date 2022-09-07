@@ -1,4 +1,4 @@
-import { StyleSheet, Pressable, ImageBackground, Platform } from "react-native";
+import { StyleSheet, ImageBackground, Platform } from "react-native";
 import Colors from "../constants/Colors";
 import { MonoText } from "./StyledText";
 import { View } from "./Themed";
