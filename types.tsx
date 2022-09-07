@@ -9,6 +9,7 @@ import {
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { WorkoutsDb } from "./components/SingleCards";
 
 declare global {
   namespace ReactNavigation {
@@ -19,6 +20,7 @@ declare global {
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Details: undefined;
+  Workout: any;
   NotFound: undefined;
 };
 
