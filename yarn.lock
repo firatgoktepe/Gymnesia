@@ -6998,6 +6998,11 @@
     "react-freeze" "^1.0.0"
     "warn-once" "^0.1.0"
 
+"react-native-swiper-flatlist@^3.0.17":
+  "integrity" "sha512-4sWHzMHhXohiePBtJcVwt/fYVLpKFab7H1bvUH8TI3iMFYTOlMaW2PerlTDqGSO1eLRc4BX1z3X6e1NYPoakMA=="
+  "resolved" "https://registry.npmjs.org/react-native-swiper-flatlist/-/react-native-swiper-flatlist-3.0.17.tgz"
+  "version" "3.0.17"
+
 "react-native-web@~0.18.7":
   "integrity" "sha512-NOjFgzD0eAldYCpLJIr47FreitcxkJka8CdGBYRmnZLvSU1AUwCR4PtxzHNbb4hAwO+/fKGh+aoRsGSwQo0cBA=="
   "resolved" "https://registry.npmjs.org/react-native-web/-/react-native-web-0.18.8.tgz"
