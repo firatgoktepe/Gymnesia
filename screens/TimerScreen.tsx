@@ -1,14 +1,31 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Image, Dimensions, Platform } from "react-native";
+import { SwiperFlatList } from "react-native-swiper-flatlist";
+import { Text, View } from "../components/Themed";
+import Colors from "../constants/Colors";
+import { workouts } from "../db";
+import { WorkoutsDb } from "../components/SingleCards";
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+export const { width, height } = Dimensions.get("window");
 
 export default function TimerScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Timer</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TimerScreen.tsx" />
+      <SwiperFlatList
+        showPagination
+        paginationActiveColor={Colors.light.notification}
+      >
+        {workouts.map((workout: WorkoutsDb) => (
+          <View key={workout.id} style={styles.parent}>
+            <View style={styles.content}>
+              <Image style={styles.image} source={workout.gif} />
+              <Text style={styles.text}>{workout.title}</Text>
+            </View>
+            <View style={styles.timer}>
+              <Text>Timer</Text>
+            </View>
+          </View>
+        ))}
+      </SwiperFlatList>
     </View>
   );
 }
@@ -16,16 +33,31 @@ export default function TimerScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "white",
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  parent: {
+    height: height * 0.5,
+    width: width * 1,
+    justifyContent: "space-around",
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  content: {
+    flex: 4,
+  },
+  image: {
+    flex: 1,
+    width: width * 1,
+    justifyContent: "center",
+  },
+  text: {
+    marginTop: 10,
+    fontSize: 25,
+    lineHeight: 24,
+    color: `${Colors.light.text}`,
+    fontWeight: Platform.OS === "android" ? "900" : "700",
+    textAlign: "center",
+  },
+  timer: {
+    flex: 1,
+    backgroundColor: "red",
   },
 });

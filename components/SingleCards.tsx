@@ -13,6 +13,8 @@ export interface WorkoutsDb {
   description: string;
   duration: number;
   task: number;
+  gif: any;
+  rep: number;
 }
 
 export default function SingleCards() {
