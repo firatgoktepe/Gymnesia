@@ -4,6 +4,7 @@ import { Text, View } from "../components/Themed";
 import Colors from "../constants/Colors";
 import { workouts } from "../db";
 import { WorkoutsDb } from "../components/SingleCards";
+import TimerWatch from "../components/TimerWatch";
 
 export const { width, height } = Dimensions.get("window");
 
@@ -20,9 +21,7 @@ export default function TimerScreen() {
               <Image style={styles.image} source={workout.gif} />
               <Text style={styles.text}>{workout.title}</Text>
             </View>
-            <View style={styles.timer}>
-              <Text>Timer</Text>
-            </View>
+            <TimerWatch />
           </View>
         ))}
       </SwiperFlatList>
@@ -36,7 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   parent: {
-    height: height * 0.5,
+    height: height * 0.7,
     width: width * 1,
     justifyContent: "space-around",
   },
@@ -55,9 +54,5 @@ const styles = StyleSheet.create({
     color: `${Colors.light.text}`,
     fontWeight: Platform.OS === "android" ? "900" : "700",
     textAlign: "center",
-  },
-  timer: {
-    flex: 1,
-    backgroundColor: "red",
   },
 });
