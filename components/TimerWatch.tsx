@@ -43,7 +43,7 @@ const TimerWatch = () => {
               alert("Custom Completion Function");
             }}
           />
-          <Text style={styles.repsText}>4x reps</Text>
+          <Text style={styles.repsText}>4x15 reps</Text>
           <View style={{ flexDirection: "row" }}>
             <TouchableHighlight
               onPress={() => {
@@ -110,7 +110,7 @@ const options = {
   container: {
     backgroundColor: "#FFFFFF",
     padding: 5,
-    width: 200,
+    width: 250,
     alignItems: "center",
   },
   text: {
