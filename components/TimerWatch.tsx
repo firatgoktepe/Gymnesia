@@ -11,6 +11,7 @@ import {
   Text,
   View,
   TouchableHighlight,
+  Alert,
 } from "react-native";
 
 //importing library to use Stopwatch and Timer
@@ -40,7 +41,9 @@ const TimerWatch = () => {
             options={options}
             //options for the styling
             handleFinish={() => {
-              alert("Custom Completion Function");
+              Alert.alert(
+                "Time is over. Slide left to right for the next exercise"
+              );
             }}
           />
           <Text style={styles.repsText}>4x15 reps</Text>
