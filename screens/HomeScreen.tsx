@@ -1,9 +1,16 @@
-import { StyleSheet, ScrollView, Pressable } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, ScrollView, Pressable, Alert } from "react-native";
+
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 import Header from "../components/Header";
 import { Text, View } from "../components/Themed";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { RootTabScreenProps } from "../types";
 import Axios from "axios";
+import { loggingOut } from "../API/firebaseMethods";
 import Search from "../components/Search";
 import TodaysCard from "../components/TodaysCard";
 import FeaturedCard from "../components/FeaturedCard";
@@ -28,6 +35,32 @@ import FeaturedCard from "../components/FeaturedCard";
 //   });
 
 export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
+  let currentUserUID = firebase.auth().currentUser?.uid;
+  const [firstName, setFirstName] = useState("");
+
+  useEffect(() => {
+    async function getUserInfo() {
+      let doc = await firebase
+        .firestore()
+        .collection("users")
+        .doc(currentUserUID)
+        .get();
+
+      if (!doc.exists) {
+        Alert.alert("No user data found!");
+      } else {
+        let dataObj: any = doc.data();
+        setFirstName(dataObj.firstName);
+      }
+    }
+    getUserInfo();
+  });
+
+  const handlePress = () => {
+    loggingOut();
+    navigation.replace("HomePage");
+  };
+
   return (
     <ScrollView style={styles.container}>
       <Header />

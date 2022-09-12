@@ -6,8 +6,6 @@ import { EvilIcons, Ionicons } from "@expo/vector-icons";
 import Search from "./Search";
 import { workouts } from "../db";
 
-console.log("Workouts link", workouts);
-
 const title: string = workouts[0].title;
 const calories: number = workouts[0].calories;
 const duration: number = workouts[0].duration;

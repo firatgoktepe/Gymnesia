@@ -13,6 +13,10 @@ const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.createURL('/')],
   config: {
     screens: {
+      Loading: 'fullScreenModal',
+      HomePage: 'fullScreenModal',
+      SignUp: 'modal',
+      SignIn: 'modal',
       Root: {
         screens: {
           Home: {

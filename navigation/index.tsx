@@ -12,6 +12,16 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
+import "firebase/firestore";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+import apiKeys from "../config/keys";
+import WelcomeScreen from "../screens/WelcomeScreen";
+import SignUp from "../screens/SignUp";
+import SignIn from "../screens/SignIn";
+import LoadingScreen from "../screens/LoadingScreen";
+
 import { ColorSchemeName, Pressable } from "react-native";
 
 import Colors from "../constants/Colors";
@@ -35,6 +45,11 @@ export default function Navigation({
 }: {
   colorScheme: ColorSchemeName;
 }) {
+  if (!firebase.apps.length) {
+    console.log("Connected with Firebase");
+    firebase.initializeApp(apiKeys.firebaseConfig);
+  }
+
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
@@ -54,6 +69,26 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name={"Loading"}
+        component={LoadingScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="HomePage"
+        component={WelcomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{ headerShown: false, presentation: "modal" }}
+      />
+      <Stack.Screen
+        name="SignIn"
+        component={SignIn}
+        options={{ headerShown: false, presentation: "modal" }}
+      />
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
