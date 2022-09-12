@@ -49,22 +49,25 @@ const SignUp: React.FC<any> = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      <View>
-        <Text>Create an account </Text>
+      <View style={styles.container}>
+        <Text style={styles.text}>Create an account </Text>
 
         <ScrollView>
           <TextInput
+            style={styles.textInput}
             placeholder="First name*"
             value={firstName}
             onChangeText={(name) => setFirstName(name)}
           />
           <TextInput
-            placeholder="Last name"
+            style={styles.textInput}
+            placeholder="Last name*"
             value={lastName}
             onChangeText={(name) => setLastName(name)}
           />
 
           <TextInput
+            style={styles.textInput}
             placeholder="Enter your email*"
             value={email}
             onChangeText={(email) => setEmail(email)}
@@ -73,29 +76,86 @@ const SignUp: React.FC<any> = ({ navigation }) => {
           />
 
           <TextInput
+            style={styles.textInput}
             placeholder="Enter your password*"
             value={password}
             onChangeText={(password) => setPassword(password)}
             secureTextEntry={true}
           />
           <TextInput
+            style={styles.textInput}
             placeholder="Retype your password to confirm*"
             value={confirmPassword}
             onChangeText={(password2) => setConfirmPassword(password2)}
             secureTextEntry={true}
           />
-          <Pressable onPress={handlePress}>
-            <Text>Sign Up</Text>
+          <Pressable style={styles.button} onPress={handlePress}>
+            <Text style={styles.buttonText}>Sign Up</Text>
           </Pressable>
 
-          <Text>Already have an account?</Text>
-          <Pressable onPress={() => navigation.navigate("Sign In")}>
-            <Text>Sign In</Text>
+          <Text style={styles.inlineText}>Already have an account?</Text>
+          <Pressable
+            style={styles.button}
+            onPress={() => navigation.navigate("SignIn")}
+          >
+            <Text style={styles.buttonText}>Sign In</Text>
+          </Pressable>
+          <Pressable style={styles.button} onPress={() => navigation.goBack()}>
+            <Text style={styles.buttonText}>Back</Text>
           </Pressable>
         </ScrollView>
       </View>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    height: "100%",
+    width: "100%",
+    backgroundColor: "#25AB75",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  button: {
+    width: 200,
+    padding: 5,
+    backgroundColor: "#F95045",
+    borderWidth: 2,
+    borderColor: "white",
+    borderRadius: 15,
+    alignSelf: "center",
+    margin: "5%",
+  },
+  buttonText: {
+    fontSize: 20,
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  inlineText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "navy",
+    textAlign: "center",
+    marginTop: "5%",
+  },
+  text: {
+    textAlign: "center",
+    fontSize: 25,
+    margin: "5%",
+    marginTop: "15%",
+    fontWeight: "bold",
+    color: "#2E6194",
+  },
+  textInput: {
+    width: 300,
+    fontSize: 18,
+    borderWidth: 1,
+    borderColor: "#a4eddf",
+    padding: 10,
+    margin: 5,
+  },
+});
 
 export default SignUp;

@@ -4,7 +4,7 @@ import { MonoText } from "./StyledText";
 import { View } from "./Themed";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
-export default function Header() {
+const Header: React.FC<any> = ({ firstName }) => {
   return (
     <>
       <View style={styles.profileContainer}>
@@ -19,7 +19,7 @@ export default function Header() {
               lightColor="rgba(0,0,0,0.8)"
               darkColor="rgba(255,255,255,0.8)"
             >
-              Hello Fırat
+              Hello {firstName}
               <MaterialCommunityIcons
                 name="hand-wave"
                 size={24}
@@ -32,7 +32,7 @@ export default function Header() {
               lightColor="rgba(0,0,0,0.8)"
               darkColor="rgba(255,255,255,0.8)"
             >
-              Good Morning
+              Have a nice day
             </MonoText>
           </View>
         </View>
@@ -49,7 +49,7 @@ export default function Header() {
       </View>
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   profileContainer: {
@@ -84,3 +84,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+export default Header;

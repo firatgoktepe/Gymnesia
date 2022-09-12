@@ -113,7 +113,7 @@ const options = {
   container: {
     backgroundColor: "#FFFFFF",
     padding: 5,
-    width: 250,
+    width: 300,
     alignItems: "center",
   },
   text: {

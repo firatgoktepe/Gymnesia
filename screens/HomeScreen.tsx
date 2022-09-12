@@ -46,7 +46,7 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
         .doc(currentUserUID)
         .get();
 
-      if (!doc.exists) {
+      if (!doc.exists && !currentUserUID) {
         Alert.alert("No user data found!");
       } else {
         let dataObj: any = doc.data();
@@ -63,7 +63,7 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
 
   return (
     <ScrollView style={styles.container}>
-      <Header />
+      <Header firstName={firstName} />
       <Search />
       <Pressable onPress={() => navigation.navigate("Details")}>
         <TodaysCard />
