@@ -21,6 +21,7 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Details: undefined;
   Workout: any;
+  Notification: undefined;
   NotFound: undefined;
   Loading: undefined;
   HomePage: undefined;
