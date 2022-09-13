@@ -4,7 +4,7 @@ import { MonoText } from "./StyledText";
 import { View } from "./Themed";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
-const Header: React.FC<any> = ({ firstName }) => {
+const Header: React.FC<any> = ({ firstName, navigation }) => {
   return (
     <>
       <View style={styles.profileContainer}>
@@ -39,6 +39,7 @@ const Header: React.FC<any> = ({ firstName }) => {
 
         <View style={styles.notification}>
           <Pressable
+            onPress={() => navigation.navigate("Notification")}
             style={({ pressed }) => ({
               opacity: pressed ? 0.5 : 1,
             })}
