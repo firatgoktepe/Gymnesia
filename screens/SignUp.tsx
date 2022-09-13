@@ -96,8 +96,16 @@ const SignUp: React.FC<any> = ({ navigation }) => {
             secureTextEntry={true}
           />
           <Pressable style={styles.button} onPress={handlePress}>
-            {isLoading && <ActivityIndicator size="large" color="white" />}
-            <Text style={styles.buttonText}>Sign Up</Text>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                alignItems: "center",
+              }}
+            >
+              {isLoading && <ActivityIndicator size="small" color="white" />}
+              <Text style={styles.buttonText}>Sign Up</Text>
+            </View>
           </Pressable>
 
           <Text style={styles.inlineText}>Already have an account?</Text>

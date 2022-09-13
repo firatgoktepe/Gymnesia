@@ -55,8 +55,16 @@ const SignIn: React.FC<any> = ({ navigation }) => {
       />
 
       <Pressable style={styles.button} onPress={handlePress}>
-        {isLoading && <ActivityIndicator size="large" color="white" />}
-        <Text style={styles.buttonText}>Submit</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+          }}
+        >
+          {isLoading && <ActivityIndicator size="small" color="white" />}
+          <Text style={styles.buttonText}>Submit</Text>
+        </View>
       </Pressable>
       <Pressable style={styles.button} onPress={() => navigation.goBack()}>
         <Text style={styles.buttonText}>Back</Text>
