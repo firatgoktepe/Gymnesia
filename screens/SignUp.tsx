@@ -9,6 +9,7 @@ import {
   StyleSheet,
   SafeAreaView,
   Pressable,
+  ActivityIndicator,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { registration } from "../API/firebaseMethods";
@@ -19,6 +20,7 @@ const SignUp: React.FC<any> = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const emptyState = () => {
     setFirstName("");
@@ -26,6 +28,10 @@ const SignUp: React.FC<any> = ({ navigation }) => {
     setEmail("");
     setPassword("");
     setConfirmPassword("");
+  };
+
+  const toggleLoading = () => {
+    setIsLoading(!isLoading);
   };
 
   const handlePress = () => {
@@ -42,7 +48,7 @@ const SignUp: React.FC<any> = ({ navigation }) => {
       Alert.alert("Password does not match!");
     } else {
       registration(email, password, lastName, firstName);
-      navigation.navigate("Loading");
+      toggleLoading();
       emptyState();
     }
   };
@@ -90,6 +96,7 @@ const SignUp: React.FC<any> = ({ navigation }) => {
             secureTextEntry={true}
           />
           <Pressable style={styles.button} onPress={handlePress}>
+            {isLoading && <ActivityIndicator size="large" color="white" />}
             <Text style={styles.buttonText}>Sign Up</Text>
           </Pressable>
 

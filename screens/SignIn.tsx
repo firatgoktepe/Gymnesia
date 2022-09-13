@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Alert,
   Pressable,
+  ActivityIndicator,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { signIn } from "../API/firebaseMethods";
@@ -13,6 +14,11 @@ import { signIn } from "../API/firebaseMethods";
 const SignIn: React.FC<any> = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const toggleLoading = () => {
+    setIsLoading(!isLoading);
+  };
 
   const handlePress = () => {
     if (!email) {
@@ -26,6 +32,7 @@ const SignIn: React.FC<any> = ({ navigation }) => {
     signIn(email, password);
     setEmail("");
     setPassword("");
+    toggleLoading();
   };
 
   return (
@@ -48,6 +55,7 @@ const SignIn: React.FC<any> = ({ navigation }) => {
       />
 
       <Pressable style={styles.button} onPress={handlePress}>
+        {isLoading && <ActivityIndicator size="large" color="white" />}
         <Text style={styles.buttonText}>Submit</Text>
       </Pressable>
       <Pressable style={styles.button} onPress={() => navigation.goBack()}>
