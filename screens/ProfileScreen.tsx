@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Pressable, Image, Alert } from "react-native";
+import {
+  StyleSheet,
+  Pressable,
+  Image,
+  Alert,
+  ImageBackground,
+  Platform,
+} from "react-native";
 import { loggingOut } from "../API/firebaseMethods";
 import { Text, View } from "../components/Themed";
 import { getAuth } from "firebase/auth";
+import { AntDesign } from "@expo/vector-icons";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import * as ImagePicker from "expo-image-picker";
+import { ref, uploadBytes, getStorage } from "firebase/storage";
 
 const ProfileScreen: React.FC<any> = ({ navigation }) => {
-  // const auth = getAuth();
-  // const user = auth.currentUser;
-  // if (user !== null) {
-  //   const email = user.email;
-
-  //   const uid = user.uid;
-  // }
-
   let currentUserUID = firebase.auth().currentUser?.uid;
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     async function getUserInfo() {
@@ -42,13 +45,77 @@ const ProfileScreen: React.FC<any> = ({ navigation }) => {
     getUserInfo();
   }, []);
 
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result: any = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log("Result", result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+      const uri = result.uri;
+      let uploadUri = Platform.OS === "ios" ? uri.replace("file://", "") : uri;
+      // firebase
+      //   .storage()
+      //   // @ts-ignore
+      //   .ref(currentUserUID)
+      //   // @ts-ignore
+      //   .putFile(uploadUri)
+      //   .then((snapshot: any) => {
+      //     console.log(`${uploadUri} has been successfully uploaded.`);
+      //   })
+      //   .catch((error: any) => {
+      //     Alert.alert(error);
+      //   });
+
+      // const storage = getStorage();
+      // //@ts-ignore
+      // const storageRef = ref(currentUserUID);
+
+      // console.log("My ref", storageRef);
+      const update = {
+        displayName: "Alias",
+        photoURL: `${uploadUri}`,
+      };
+
+      firebase.auth().currentUser?.updateProfile(update);
+
+      console.log("hey", firebase.auth().currentUser);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Profile</Text>
-      <Image
-        style={styles.profileLogo}
-        source={require("../assets/images/profile.jpeg")}
-      />
+      <Pressable onPress={pickImage}>
+        {image ? (
+          <ImageBackground style={styles.profileLogo} source={{ uri: image }}>
+            <AntDesign
+              style={{ marginBottom: 35 }}
+              name="clouduploado"
+              size={44}
+              color="white"
+            />
+          </ImageBackground>
+        ) : (
+          <ImageBackground
+            style={styles.profileLogo}
+            source={require("../assets/images/profile.jpeg")}
+          >
+            <AntDesign
+              style={{ marginBottom: 35 }}
+              name="clouduploado"
+              size={44}
+              color="white"
+            />
+          </ImageBackground>
+        )}
+      </Pressable>
       <Text style={[styles.title, { color: "#25AB75", fontStyle: "italic" }]}>
         {firstName && firstName}
         <Text> </Text>
@@ -86,6 +153,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 20,
     marginBottom: 20,
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
 });
 
