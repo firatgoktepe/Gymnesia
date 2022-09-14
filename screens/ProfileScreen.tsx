@@ -1,4 +1,5 @@
-import { StyleSheet, Pressable, Image } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Pressable, Image, Alert } from "react-native";
 import { loggingOut } from "../API/firebaseMethods";
 import { Text, View } from "../components/Themed";
 import { getAuth } from "firebase/auth";
@@ -7,13 +8,40 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
 const ProfileScreen: React.FC<any> = ({ navigation }) => {
-  const auth = getAuth();
-  const user = auth.currentUser;
-  if (user !== null) {
-    const email = user.email;
+  // const auth = getAuth();
+  // const user = auth.currentUser;
+  // if (user !== null) {
+  //   const email = user.email;
 
-    const uid = user.uid;
-  }
+  //   const uid = user.uid;
+  // }
+
+  let currentUserUID = firebase.auth().currentUser?.uid;
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    async function getUserInfo() {
+      let doc = await firebase
+        .firestore()
+        .collection("users")
+        .doc(currentUserUID)
+        .get();
+
+      if (!doc.exists && !currentUserUID) {
+        Alert.alert("No user data found!");
+      } else {
+        let dataObj: any = doc.data();
+        setFirstName(dataObj.firstName);
+        setLastName(dataObj.lastName);
+        setEmail(dataObj.email);
+        console.log("DATA", dataObj);
+      }
+    }
+    getUserInfo();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Profile</Text>
@@ -22,7 +50,14 @@ const ProfileScreen: React.FC<any> = ({ navigation }) => {
         source={require("../assets/images/profile.jpeg")}
       />
       <Text style={[styles.title, { color: "#25AB75", fontStyle: "italic" }]}>
-        {user && user.email}
+        {firstName && firstName}
+        <Text> </Text>
+        <Text style={[styles.title, { color: "#25AB75", fontStyle: "italic" }]}>
+          {lastName && lastName}
+        </Text>
+      </Text>
+      <Text style={[styles.title, { color: "#25AB75", fontStyle: "italic" }]}>
+        {email && email}
       </Text>
       <Pressable onPress={() => loggingOut()}>
         <Text style={[styles.title, { color: "#F95045", fontSize: 25 }]}>
