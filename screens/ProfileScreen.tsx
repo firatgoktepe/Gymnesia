@@ -14,6 +14,7 @@ import { AntDesign } from "@expo/vector-icons";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import storage from "@react-native-firebase/storage";
 import * as ImagePicker from "expo-image-picker";
 import { ref, uploadBytes, getStorage } from "firebase/storage";
 
@@ -60,11 +61,8 @@ const ProfileScreen: React.FC<any> = ({ navigation }) => {
       setImage(result.uri);
       const uri = result.uri;
       let uploadUri = Platform.OS === "ios" ? uri.replace("file://", "") : uri;
-      // firebase
-      //   .storage()
-      //   // @ts-ignore
+      // storage()
       //   .ref(currentUserUID)
-      //   // @ts-ignore
       //   .putFile(uploadUri)
       //   .then((snapshot: any) => {
       //     console.log(`${uploadUri} has been successfully uploaded.`);
@@ -72,20 +70,6 @@ const ProfileScreen: React.FC<any> = ({ navigation }) => {
       //   .catch((error: any) => {
       //     Alert.alert(error);
       //   });
-
-      // const storage = getStorage();
-      // //@ts-ignore
-      // const storageRef = ref(currentUserUID);
-
-      // console.log("My ref", storageRef);
-      const update = {
-        displayName: "Alias",
-        photoURL: `${uploadUri}`,
-      };
-
-      firebase.auth().currentUser?.updateProfile(update);
-
-      console.log("hey", firebase.auth().currentUser);
     }
   };
 
