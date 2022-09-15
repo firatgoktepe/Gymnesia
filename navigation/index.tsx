@@ -32,7 +32,7 @@ import ModalNotificationScreen from "../screens/ModalNotificationScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import HomeScreen from "../screens/HomeScreen";
 import TimerScreen from "../screens/TimerScreen";
-import PresentScreen from "../screens/PresentScreen";
+import NutritionScreen from "../screens/NutritionScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import {
   RootStackParamList,
@@ -163,10 +163,10 @@ function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Present"
-        component={PresentScreen}
+        name="Nutrition"
+        component={NutritionScreen}
         options={{
-          title: "Present",
+          title: "Nutrition",
           tabBarIcon: ({ color }) => <TabBarIcon name="gift" color={color} />,
         }}
       />

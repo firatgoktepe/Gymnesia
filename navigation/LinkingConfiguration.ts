@@ -29,7 +29,7 @@ const linking: LinkingOptions<RootStackParamList> = {
               TimerScreen: 'two',
             },
           },
-          Present: {
+          Nutrition: {
             screens: {
               TimerScreen: 'three',
             },
