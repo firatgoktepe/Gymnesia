@@ -21,6 +21,7 @@ import WelcomeScreen from "../screens/WelcomeScreen";
 import SignUp from "../screens/SignUp";
 import SignIn from "../screens/SignIn";
 import LoadingScreen from "../screens/LoadingScreen";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import { ColorSchemeName, Pressable } from "react-native";
 
@@ -167,7 +168,9 @@ function BottomTabNavigator() {
         component={NutritionScreen}
         options={{
           title: "Nutrition",
-          tabBarIcon: ({ color }) => <TabBarIcon name="gift" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="fastfood" size={24} color={color} />
+          ),
         }}
       />
       <BottomTab.Screen
