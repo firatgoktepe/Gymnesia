@@ -4,7 +4,7 @@ import { MonoText } from "./StyledText";
 import { View } from "./Themed";
 import { AntDesign } from "@expo/vector-icons";
 
-export default function Search() {
+const Search: React.FC<any> = ({ placeholder }) => {
   return (
     <View style={styles.searchSection}>
       <AntDesign
@@ -13,10 +13,10 @@ export default function Search() {
         size={24}
         color="#A8A8A8"
       />
-      <TextInput style={styles.input} placeholder="Search workouts" />
+      <TextInput style={styles.input} placeholder={placeholder} />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   searchSection: {
@@ -39,3 +39,5 @@ const styles = StyleSheet.create({
     color: "#424242",
   },
 });
+
+export default Search;

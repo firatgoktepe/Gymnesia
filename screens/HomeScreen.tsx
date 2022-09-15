@@ -64,7 +64,7 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
   return (
     <ScrollView style={styles.container}>
       <Header firstName={firstName} navigation={navigation} />
-      <Search />
+      <Search placeholder="Search Workout" />
       <Pressable onPress={() => navigation.navigate("Details")}>
         <TodaysCard />
       </Pressable>
