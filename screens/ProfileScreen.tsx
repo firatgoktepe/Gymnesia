@@ -78,7 +78,11 @@ const ProfileScreen: React.FC<any> = ({ navigation }) => {
       <Text style={styles.title}>Profile</Text>
       <Pressable onPress={pickImage}>
         {image ? (
-          <ImageBackground style={styles.profileLogo} source={{ uri: image }}>
+          <ImageBackground
+            imageStyle={{ borderRadius: 150 }}
+            style={styles.profileLogo}
+            source={{ uri: image }}
+          >
             <AntDesign
               style={{ marginBottom: 35 }}
               name="clouduploado"
