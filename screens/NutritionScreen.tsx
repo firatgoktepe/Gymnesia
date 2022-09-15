@@ -1,27 +1,35 @@
-import { StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  StyleSheet,
+  ScrollView,
+  Pressable,
+  Alert,
+  ImageBackground,
+  Platform,
+} from "react-native";
 
-import EditScreenInfo from "../components/EditScreenInfo";
+import Header from "../components/Header";
 import { Text, View } from "../components/Themed";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { RootTabScreenProps } from "../types";
+import { loggingOut } from "../API/firebaseMethods";
+import Search from "../components/Search";
+import TodaysCard from "../components/TodaysCard";
+import FeaturedCard from "../components/FeaturedCard";
 
-export default function NutritionScreen() {
+export default function NutritionScreen({
+  navigation,
+}: RootTabScreenProps<"Nutrition">) {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Nutrition</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="/screens/NutritionScreen.tsx" />
-    </View>
+    <ScrollView style={styles.container}>
+      <Search placeholder="Search Nutrition" />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
   title: {
     fontSize: 20,
