@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   StyleSheet,
+  Dimensions,
   ScrollView,
   Pressable,
-  Alert,
+  StatusBar,
   ImageBackground,
-  Platform,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -17,82 +17,259 @@ import { loggingOut } from "../API/firebaseMethods";
 import Search from "../components/Search";
 import TodaysCard from "../components/TodaysCard";
 import FeaturedCard from "../components/FeaturedCard";
+import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 
 const image = {
   uri: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
 };
 
+const FirstRoute = () => (
+  <ImageBackground
+    source={image}
+    resizeMode="cover"
+    style={styles.image}
+    imageStyle={{
+      opacity: 0.5,
+    }}
+  >
+    <View style={styles.indicator}>
+      <Text style={styles.title}>0</Text>
+      <Text style={styles.text}>kCal / day</Text>
+    </View>
+    <View
+      style={{
+        justifyContent: "space-around",
+        flexDirection: "row",
+        padding: 30,
+      }}
+    >
+      <View style={styles.ingredient}>
+        <View
+          style={{
+            width: 25,
+            height: 25,
+            borderRadius: 150,
+            backgroundColor: "orange",
+          }}
+        ></View>
+        <View style={{ marginLeft: 5 }}>
+          <Text>Fat</Text>
+          <Text>0 g</Text>
+        </View>
+      </View>
+      <View style={styles.ingredient}>
+        <View
+          style={{
+            width: 25,
+            height: 25,
+            borderRadius: 150,
+            backgroundColor: "#25AB75",
+          }}
+        ></View>
+        <View style={{ marginLeft: 5 }}>
+          <Text>Carbonhydrates</Text>
+          <Text>0 g</Text>
+        </View>
+      </View>
+      <View style={styles.ingredient}>
+        <View
+          style={{
+            width: 25,
+            height: 25,
+            borderRadius: 150,
+            backgroundColor: "blue",
+          }}
+        ></View>
+        <View style={{ marginLeft: 5 }}>
+          <Text>Protein</Text>
+          <Text>0 g</Text>
+        </View>
+      </View>
+    </View>
+  </ImageBackground>
+);
+
+const SecondRoute = () => (
+  <ImageBackground
+    source={image}
+    resizeMode="cover"
+    style={styles.image}
+    imageStyle={{
+      opacity: 0.5,
+    }}
+  >
+    <View style={styles.indicator}>
+      <Text style={styles.title}>0</Text>
+      <Text style={styles.text}>kCal / week</Text>
+    </View>
+    <View
+      style={{
+        padding: 30,
+        justifyContent: "space-around",
+        flexDirection: "row",
+      }}
+    >
+      <View style={styles.ingredient}>
+        <View
+          style={{
+            width: 25,
+            height: 25,
+            borderRadius: 150,
+            backgroundColor: "orange",
+          }}
+        ></View>
+        <View style={{ marginLeft: 5 }}>
+          <Text>Fat</Text>
+          <Text>0 g</Text>
+        </View>
+      </View>
+      <View style={styles.ingredient}>
+        <View
+          style={{
+            width: 25,
+            height: 25,
+            borderRadius: 150,
+            backgroundColor: "#25AB75",
+          }}
+        ></View>
+        <View style={{ marginLeft: 5 }}>
+          <Text>Carbonhydrates</Text>
+          <Text>0 g</Text>
+        </View>
+      </View>
+      <View style={styles.ingredient}>
+        <View
+          style={{
+            width: 25,
+            height: 25,
+            borderRadius: 150,
+            backgroundColor: "blue",
+          }}
+        ></View>
+        <View style={{ marginLeft: 5 }}>
+          <Text>Protein</Text>
+          <Text>0 g</Text>
+        </View>
+      </View>
+    </View>
+  </ImageBackground>
+);
+
+const ThirdRoute = () => (
+  <ImageBackground
+    source={image}
+    resizeMode="cover"
+    style={styles.image}
+    imageStyle={{
+      opacity: 0.5,
+    }}
+  >
+    <View style={styles.indicator}>
+      <Text style={styles.title}>0</Text>
+      <Text style={styles.text}>kCal / month</Text>
+    </View>
+    <View
+      style={{
+        padding: 30,
+        justifyContent: "space-around",
+        flexDirection: "row",
+      }}
+    >
+      <View style={styles.ingredient}>
+        <View
+          style={{
+            width: 25,
+            height: 25,
+            borderRadius: 150,
+            backgroundColor: "orange",
+          }}
+        ></View>
+        <View style={{ marginLeft: 5 }}>
+          <Text>Fat</Text>
+          <Text>0 g</Text>
+        </View>
+      </View>
+      <View style={styles.ingredient}>
+        <View
+          style={{
+            width: 25,
+            height: 25,
+            borderRadius: 150,
+            backgroundColor: "#25AB75",
+          }}
+        ></View>
+        <View style={{ marginLeft: 5 }}>
+          <Text>Carbonhydrates</Text>
+          <Text>0 g</Text>
+        </View>
+      </View>
+      <View style={styles.ingredient}>
+        <View
+          style={{
+            width: 25,
+            height: 25,
+            borderRadius: 150,
+            backgroundColor: "blue",
+          }}
+        ></View>
+        <View style={{ marginLeft: 5 }}>
+          <Text>Protein</Text>
+          <Text>0 g</Text>
+        </View>
+      </View>
+    </View>
+  </ImageBackground>
+);
+
+const initialLayout = { width: Dimensions.get("window").width };
+
+const renderScene = SceneMap({
+  first: FirstRoute,
+  second: SecondRoute,
+  third: ThirdRoute,
+});
+
 export default function NutritionScreen({
   navigation,
 }: RootTabScreenProps<"Nutrition">) {
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: "first", title: "Today" },
+    { key: "second", title: "Last 7" },
+    { key: "third", title: "Last 30" },
+  ]);
+
+  const renderTabBar: React.FC<any> = (props) => (
+    <TabBar
+      {...props}
+      indicatorStyle={{ backgroundColor: "white" }}
+      labelStyle={{
+        backgroundColor: "#F95045",
+        borderRadius: 20,
+        fontWeight: "bold",
+        textTransform: "uppercase",
+        textAlign: "center",
+        width: 100,
+        justifyContent: "center",
+        padding: 10,
+      }}
+      style={{
+        backgroundColor: "#25AB75",
+      }}
+    />
+  );
+
   return (
-    <ScrollView style={styles.container}>
+    <>
       <Search placeholder="Search Nutrition" />
-      <ImageBackground
-        source={image}
-        resizeMode="cover"
-        style={styles.image}
-        imageStyle={{
-          borderTopLeftRadius: 25,
-          borderTopRightRadius: 25,
-          opacity: 0.5,
-        }}
-      >
-        <View style={styles.indicator}>
-          <Text style={styles.title}>0</Text>
-          <Text style={styles.text}>kCal / day</Text>
-        </View>
-        <View
-          style={{
-            padding: 30,
-            justifyContent: "space-around",
-            flexDirection: "row",
-          }}
-        >
-          <View style={styles.ingredient}>
-            <View
-              style={{
-                width: 25,
-                height: 25,
-                borderRadius: 150,
-                backgroundColor: "orange",
-              }}
-            ></View>
-            <View style={{ marginLeft: 5 }}>
-              <Text>Fat</Text>
-              <Text>0 / 0 g</Text>
-            </View>
-          </View>
-          <View style={styles.ingredient}>
-            <View
-              style={{
-                width: 25,
-                height: 25,
-                borderRadius: 150,
-                backgroundColor: "#25AB75",
-              }}
-            ></View>
-            <View style={{ marginLeft: 5 }}>
-              <Text>Carbonhydrates</Text>
-              <Text>0 / 0 g</Text>
-            </View>
-          </View>
-          <View style={styles.ingredient}>
-            <View
-              style={{
-                width: 25,
-                height: 25,
-                borderRadius: 150,
-                backgroundColor: "blue",
-              }}
-            ></View>
-            <View style={{ marginLeft: 5 }}>
-              <Text>Protein</Text>
-              <Text>0 / 0 g</Text>
-            </View>
-          </View>
-        </View>
-      </ImageBackground>
+      <TabView
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={initialLayout}
+        renderTabBar={renderTabBar}
+        style={styles.container}
+      />
       <Pressable style={styles.button}>
         <Ionicons
           style={styles.iconText}
@@ -102,7 +279,7 @@ export default function NutritionScreen({
         />
         <Text style={styles.buttonText}>Add meal</Text>
       </Pressable>
-    </ScrollView>
+    </>
   );
 }
 
@@ -113,7 +290,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: "center",
-    height: 500,
+    height: 300,
   },
   indicator: {
     width: 150,
