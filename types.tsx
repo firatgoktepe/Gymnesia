@@ -22,6 +22,7 @@ export type RootStackParamList = {
   Details: undefined;
   Workout: any;
   Notification: undefined;
+  Nutritions: any;
   NotFound: undefined;
   Loading: undefined;
   HomePage: undefined;
@@ -37,6 +38,7 @@ export type RootTabParamList = {
   Timer: undefined;
   Nutrition: undefined;
   Profile: undefined;
+  Nutritions: any;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =

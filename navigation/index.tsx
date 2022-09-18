@@ -30,6 +30,7 @@ import useColorScheme from "../hooks/useColorScheme";
 import ModalDetailsScreen from "../screens/ModalDetailsScreen";
 import ModalFeaturedDetails from "../screens/ModalFeaturedDetails";
 import ModalNotificationScreen from "../screens/ModalNotificationScreen";
+import ModalNutritionsScreen from "../screens/ModalNutritionsScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import HomeScreen from "../screens/HomeScreen";
 import TimerScreen from "../screens/TimerScreen";
@@ -109,6 +110,9 @@ function RootNavigator() {
       </Stack.Group>
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name="Notification" component={ModalNotificationScreen} />
+      </Stack.Group>
+      <Stack.Group screenOptions={{ presentation: "modal" }}>
+        <Stack.Screen name="Nutritions" component={ModalNutritionsScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
