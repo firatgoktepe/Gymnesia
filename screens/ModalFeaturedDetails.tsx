@@ -31,14 +31,10 @@ export default function ModalFeaturedDetails() {
           <MonoText style={styles.profileTitle}>{title}</MonoText>
           <MonoText style={styles.profileText}>{`${task} Task`}</MonoText>
           <MonoText style={styles.profileText}>
-            <EvilIcons name="heart" size={12} color={`${Colors.dark.text}`} />
+            <EvilIcons name="heart" size={12} color="green" />
             {` ${calories} kCal   `}
             <MonoText style={styles.profileText}>
-              <Ionicons
-                name="time-outline"
-                size={12}
-                color={`${Colors.dark.text}`}
-              />
+              <Ionicons name="time-outline" size={12} color="green" />
               {` ${duration} Min`}
             </MonoText>
           </MonoText>
@@ -71,7 +67,7 @@ const styles = StyleSheet.create({
   profileTitle: {
     fontSize: 20,
     lineHeight: 24,
-    color: `${Colors.dark.text}`,
+    color: "green",
     fontWeight: Platform.OS === "android" ? "900" : "700",
     marginTop: 190,
     marginLeft: 10,
@@ -87,7 +83,7 @@ const styles = StyleSheet.create({
   profileText: {
     fontSize: 12,
     lineHeight: 24,
-    color: `${Colors.dark.text}`,
+    color: "green",
     marginLeft: 10,
     fontWeight: "bold",
   },
