@@ -8,6 +8,7 @@ import {
   ImageBackground,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 import Header from "../components/Header";
 import { Text, View } from "../components/Themed";
@@ -229,9 +230,10 @@ const renderScene = SceneMap({
   third: ThirdRoute,
 });
 
-export default function NutritionScreen({
-  navigation,
-}: RootTabScreenProps<"Nutrition">) {
+const NutritionScreen: React.FC<
+  any
+> = ({}: RootTabScreenProps<"Nutrition">) => {
+  const navigation = useNavigation();
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: "first", title: "Today" },
@@ -270,7 +272,10 @@ export default function NutritionScreen({
         renderTabBar={renderTabBar}
         style={styles.container}
       />
-      <Pressable style={styles.button}>
+      <Pressable
+        style={styles.button}
+        onPress={() => navigation.navigate("Nutritions")}
+      >
         <Ionicons
           style={styles.iconText}
           name="ios-add-circle-outline"
@@ -281,7 +286,7 @@ export default function NutritionScreen({
       </Pressable>
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -337,3 +342,5 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 });
+
+export default NutritionScreen;
