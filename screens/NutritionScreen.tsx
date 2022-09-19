@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   StyleSheet,
   Dimensions,
@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 
 import Header from "../components/Header";
 import { Text, View } from "../components/Themed";
@@ -24,71 +25,76 @@ const image = {
   uri: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
 };
 
-const FirstRoute = () => (
-  <ImageBackground
-    source={image}
-    resizeMode="cover"
-    style={styles.image}
-    imageStyle={{
-      opacity: 0.5,
-    }}
-  >
-    <View style={styles.indicator}>
-      <Text style={styles.title}>0</Text>
-      <Text style={styles.text}>kCal / day</Text>
-    </View>
-    <View
-      style={{
-        justifyContent: "space-around",
-        flexDirection: "row",
-        padding: 30,
+const FirstRoute = () => {
+  const route = useRoute();
+  const { calorie }: any = route.params;
+  console.log("Cal", calorie);
+  return (
+    <ImageBackground
+      source={image}
+      resizeMode="cover"
+      style={styles.image}
+      imageStyle={{
+        opacity: 0.5,
       }}
     >
-      <View style={styles.ingredient}>
-        <View
-          style={{
-            width: 25,
-            height: 25,
-            borderRadius: 150,
-            backgroundColor: "orange",
-          }}
-        ></View>
-        <View style={{ marginLeft: 5 }}>
-          <Text>Fat</Text>
-          <Text>0 g</Text>
+      <View style={styles.indicator}>
+        <Text style={styles.title}>{calorie}</Text>
+        <Text style={styles.text}>kCal / day</Text>
+      </View>
+      <View
+        style={{
+          justifyContent: "space-around",
+          flexDirection: "row",
+          padding: 30,
+        }}
+      >
+        <View style={styles.ingredient}>
+          <View
+            style={{
+              width: 25,
+              height: 25,
+              borderRadius: 150,
+              backgroundColor: "orange",
+            }}
+          ></View>
+          <View style={{ marginLeft: 5 }}>
+            <Text>Fat</Text>
+            <Text>0 g</Text>
+          </View>
+        </View>
+        <View style={styles.ingredient}>
+          <View
+            style={{
+              width: 25,
+              height: 25,
+              borderRadius: 150,
+              backgroundColor: "#25AB75",
+            }}
+          ></View>
+          <View style={{ marginLeft: 5 }}>
+            <Text>Carbonhydrates</Text>
+            <Text>0 g</Text>
+          </View>
+        </View>
+        <View style={styles.ingredient}>
+          <View
+            style={{
+              width: 25,
+              height: 25,
+              borderRadius: 150,
+              backgroundColor: "blue",
+            }}
+          ></View>
+          <View style={{ marginLeft: 5 }}>
+            <Text>Protein</Text>
+            <Text>0 g</Text>
+          </View>
         </View>
       </View>
-      <View style={styles.ingredient}>
-        <View
-          style={{
-            width: 25,
-            height: 25,
-            borderRadius: 150,
-            backgroundColor: "#25AB75",
-          }}
-        ></View>
-        <View style={{ marginLeft: 5 }}>
-          <Text>Carbonhydrates</Text>
-          <Text>0 g</Text>
-        </View>
-      </View>
-      <View style={styles.ingredient}>
-        <View
-          style={{
-            width: 25,
-            height: 25,
-            borderRadius: 150,
-            backgroundColor: "blue",
-          }}
-        ></View>
-        <View style={{ marginLeft: 5 }}>
-          <Text>Protein</Text>
-          <Text>0 g</Text>
-        </View>
-      </View>
-    </View>
-  </ImageBackground>
-);
+    </ImageBackground>
+  );
+};
 
 const SecondRoute = () => (
   <ImageBackground

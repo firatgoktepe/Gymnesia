@@ -122,7 +122,10 @@ export default function ModalNutritionsAddScreen() {
         style={styles.button}
         onPress={() => {
           onPress();
-          number && navigation.navigate("Nutrition");
+          number &&
+            navigation.navigate("Nutrition", {
+              calorie: number,
+            });
         }}
       >
         <Text style={styles.buttonText}>Done</Text>
