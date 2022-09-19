@@ -21,6 +21,7 @@ import { WorkoutsDb } from "../components/SingleCards";
 import { useRoute } from "@react-navigation/native";
 import { nutritions } from "../nutritionsDb";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ModalNutritionsAddScreen() {
   const route = useRoute();
