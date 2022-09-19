@@ -23,6 +23,7 @@ export type RootStackParamList = {
   Workout: any;
   Notification: undefined;
   Nutritions: any;
+  NutritionsAdd: any;
   NotFound: undefined;
   Loading: undefined;
   HomePage: undefined;
