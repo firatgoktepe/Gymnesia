@@ -50,7 +50,8 @@ export default function ModalNutritionsAddScreen() {
     );
   }
 
-  const onChanged = (text: any) => {
+  // My custom "type only number" function
+  const onChanged = (text: string) => {
     let newText = "";
     let numbers = "0123456789";
 
