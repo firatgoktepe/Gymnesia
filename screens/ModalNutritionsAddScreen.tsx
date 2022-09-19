@@ -20,9 +20,11 @@ import { HeadingText } from "../components/Headings";
 import { WorkoutsDb } from "../components/SingleCards";
 import { useRoute } from "@react-navigation/native";
 import { nutritions } from "../nutritionsDb";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ModalNutritionsAddScreen() {
   const route = useRoute();
+  const navigation = useNavigation();
   const {
     id,
     title,
@@ -56,7 +58,7 @@ export default function ModalNutritionsAddScreen() {
       if (numbers.indexOf(text[i]) > -1) {
         newText = newText + text[i];
       } else {
-        Alert.alert("please enter numbers only");
+        Alert.alert("Please enter numbers only");
       }
     }
     setNumber(newText);
@@ -115,7 +117,13 @@ export default function ModalNutritionsAddScreen() {
           </MonoText>
         </TouchableOpacity>
       </View>
-      <Pressable style={styles.button} onPress={() => onPress()}>
+      <Pressable
+        style={styles.button}
+        onPress={() => {
+          onPress();
+          number && navigation.navigate("Nutrition");
+        }}
+      >
         <Text style={styles.buttonText}>Done</Text>
       </Pressable>
     </View>
