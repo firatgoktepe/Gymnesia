@@ -106,7 +106,7 @@ export default function ModalNutritionsAddScreen() {
         style={styles.input}
         placeholder="100"
         keyboardType="numeric"
-        maxLength={5}
+        maxLength={4}
       />
       <View>
         <TouchableOpacity style={styles.button} onPress={handleHelpPress}>
