@@ -3,11 +3,12 @@ import * as WebBrowser from "expo-web-browser";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
-  ScrollView,
+  Alert,
   Image,
   TouchableOpacity,
   Pressable,
   TextInput,
+  Keyboard,
 } from "react-native";
 import Colors from "../constants/Colors";
 import { MonoText } from "../components/StyledText";
@@ -39,13 +40,32 @@ export default function ModalNutritionsAddScreen() {
     nutrientsCarbonhydratesAmount,
     nutrientsCarbonhydratesUnit,
   }: any = route.params;
-  const [number, onChangeNumber] = React.useState("");
+  const [number, setNumber] = React.useState("");
 
   function handleHelpPress() {
     WebBrowser.openBrowserAsync(
       "https://www.momsteam.com/nutrition/sports-nutrition-basics/nutritional-needs-guidelines/carbohydrate-and-calorie-content-of-foods"
     );
   }
+
+  const onChanged = (text: any) => {
+    let newText = "";
+    let numbers = "0123456789";
+
+    for (var i = 0; i < text.length; i++) {
+      if (numbers.indexOf(text[i]) > -1) {
+        newText = newText + text[i];
+      } else {
+        Alert.alert("please enter numbers only");
+      }
+    }
+    setNumber(newText);
+  };
+
+  const onPress = () => {
+    setNumber("");
+    Keyboard.dismiss();
+  };
 
   return (
     <View style={styles.cardContainer}>
@@ -82,10 +102,11 @@ export default function ModalNutritionsAddScreen() {
       </Text>
       <TextInput
         value={number}
-        onChangeText={onChangeNumber}
+        onChangeText={(text) => onChanged(text)}
         style={styles.input}
         placeholder="100"
         keyboardType="numeric"
+        maxLength={5}
       />
       <View>
         <TouchableOpacity style={styles.button} onPress={handleHelpPress}>
@@ -94,7 +115,7 @@ export default function ModalNutritionsAddScreen() {
           </MonoText>
         </TouchableOpacity>
       </View>
-      <Pressable style={styles.button}>
+      <Pressable style={styles.button} onPress={() => onPress()}>
         <Text style={styles.buttonText}>Done</Text>
       </Pressable>
     </View>
