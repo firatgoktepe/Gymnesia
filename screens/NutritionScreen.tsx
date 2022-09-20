@@ -29,6 +29,7 @@ const FirstRoute = () => {
   const route = useRoute();
   const { calorie, carbonhydratesAmount, fatAmount, proteinAmount }: any =
     route.params || 0;
+
   console.log("Cal", calorie);
   return (
     <ImageBackground
@@ -61,7 +62,7 @@ const FirstRoute = () => {
           ></View>
           <View style={{ marginLeft: 5 }}>
             <Text>Fat</Text>
-            <Text>{fatAmount || 0} g</Text>
+            <Text>{Math.ceil((calorie / 100) * fatAmount) || 0} g</Text>
           </View>
         </View>
         <View style={styles.ingredient}>
@@ -75,7 +76,9 @@ const FirstRoute = () => {
           ></View>
           <View style={{ marginLeft: 5 }}>
             <Text>Carbonhydrates</Text>
-            <Text>{carbonhydratesAmount || 0} g</Text>
+            <Text>
+              {Math.ceil((calorie / 100) * carbonhydratesAmount) || 0} g
+            </Text>
           </View>
         </View>
         <View style={styles.ingredient}>
@@ -89,7 +92,7 @@ const FirstRoute = () => {
           ></View>
           <View style={{ marginLeft: 5 }}>
             <Text>Protein</Text>
-            <Text>{proteinAmount || 0} g</Text>
+            <Text>{Math.ceil((calorie / 100) * proteinAmount) || 0} g</Text>
           </View>
         </View>
       </View>
