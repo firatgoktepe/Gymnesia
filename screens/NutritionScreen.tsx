@@ -27,7 +27,7 @@ const image = {
 
 const FirstRoute = () => {
   const route = useRoute();
-  const { calorie }: any = route.params;
+  const { calorie }: any = route.params || 0;
   console.log("Cal", calorie);
   return (
     <ImageBackground
@@ -39,7 +39,7 @@ const FirstRoute = () => {
       }}
     >
       <View style={styles.indicator}>
-        <Text style={styles.title}>{calorie}</Text>
+        <Text style={styles.title}>{calorie || 0}</Text>
         <Text style={styles.text}>kCal / day</Text>
       </View>
       <View
