@@ -36,24 +36,26 @@ const FirstRoute = () => {
   const [fatAmount, setFatAmount] = useState(0);
   const [proteinAmount, setProteinAmount] = useState(0);
 
-  const getData = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem("@calNumber");
-      jsonValue != null ? JSON.parse(jsonValue) : null;
-      //@ts-ignore
-      const parsedValues = JSON.parse(jsonValue);
-      if (parsedValues !== null) {
-        setCalorie(Number(parsedValues.number));
-        setCarbonhydratesAmount(parsedValues.nutrientsCarbonhydratesAmount);
-        setFatAmount(parsedValues.nutrientsFatAmount);
-        setProteinAmount(parsedValues.nutrientsProteinAmount);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem("@calNumber");
+        jsonValue != null ? JSON.parse(jsonValue) : null;
+        //@ts-ignore
+        const parsedValues = JSON.parse(jsonValue);
+        if (parsedValues !== null) {
+          setCalorie(Number(parsedValues.number));
+          setCarbonhydratesAmount(parsedValues.nutrientsCarbonhydratesAmount);
+          setFatAmount(parsedValues.nutrientsFatAmount);
+          setProteinAmount(parsedValues.nutrientsProteinAmount);
+        }
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
-    }
-  };
+    };
 
-  getData();
+    getData();
+  });
 
   return (
     <ImageBackground
@@ -134,24 +136,26 @@ const SecondRoute = () => {
   const [fatAmount, setFatAmount] = useState(0);
   const [proteinAmount, setProteinAmount] = useState(0);
 
-  const getData = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem("@calNumber");
-      jsonValue != null ? JSON.parse(jsonValue) : null;
-      //@ts-ignore
-      const parsedValues = JSON.parse(jsonValue);
-      if (parsedValues !== null) {
-        setCalorie(Number(parsedValues.number));
-        setCarbonhydratesAmount(parsedValues.nutrientsCarbonhydratesAmount);
-        setFatAmount(parsedValues.nutrientsFatAmount);
-        setProteinAmount(parsedValues.nutrientsProteinAmount);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem("@calNumber");
+        jsonValue != null ? JSON.parse(jsonValue) : null;
+        //@ts-ignore
+        const parsedValues = JSON.parse(jsonValue);
+        if (parsedValues !== null) {
+          setCalorie(Number(parsedValues.number));
+          setCarbonhydratesAmount(parsedValues.nutrientsCarbonhydratesAmount);
+          setFatAmount(parsedValues.nutrientsFatAmount);
+          setProteinAmount(parsedValues.nutrientsProteinAmount);
+        }
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
-    }
-  };
+    };
 
-  getData();
+    getData();
+  });
 
   return (
     <ImageBackground
@@ -232,24 +236,26 @@ const ThirdRoute = () => {
   const [fatAmount, setFatAmount] = useState(0);
   const [proteinAmount, setProteinAmount] = useState(0);
 
-  const getData = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem("@calNumber");
-      jsonValue != null ? JSON.parse(jsonValue) : null;
-      //@ts-ignore
-      const parsedValues = JSON.parse(jsonValue);
-      if (parsedValues !== null) {
-        setCalorie(Number(parsedValues.number));
-        setCarbonhydratesAmount(parsedValues.nutrientsCarbonhydratesAmount);
-        setFatAmount(parsedValues.nutrientsFatAmount);
-        setProteinAmount(parsedValues.nutrientsProteinAmount);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem("@calNumber");
+        jsonValue != null ? JSON.parse(jsonValue) : null;
+        //@ts-ignore
+        const parsedValues = JSON.parse(jsonValue);
+        if (parsedValues !== null) {
+          setCalorie(Number(parsedValues.number));
+          setCarbonhydratesAmount(parsedValues.nutrientsCarbonhydratesAmount);
+          setFatAmount(parsedValues.nutrientsFatAmount);
+          setProteinAmount(parsedValues.nutrientsProteinAmount);
+        }
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
-    }
-  };
+    };
 
-  getData();
+    getData();
+  });
 
   return (
     <ImageBackground
