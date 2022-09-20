@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as WebBrowser from "expo-web-browser";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -66,8 +66,25 @@ export default function ModalNutritionsAddScreen() {
     setNumber(newText);
   };
 
+  // Create or Update number
+  const saveCalorie = async () => {
+    const user = {
+      number: number,
+      nutrientsFatAmount: nutrientsFatAmount,
+      nutrientsCarbonhydratesAmount: nutrientsCarbonhydratesAmount,
+      nutrientsProteinAmount: nutrientsProteinAmount,
+    };
+    try {
+      await AsyncStorage.setItem("@calNumber", JSON.stringify(user));
+      console.log("USER", user);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const onPress = () => {
     setNumber("");
+    saveCalorie();
     Keyboard.dismiss();
   };
 
@@ -125,10 +142,10 @@ export default function ModalNutritionsAddScreen() {
           onPress();
           number &&
             navigation.navigate("Nutrition", {
-              calorie: number,
-              fatAmount: nutrientsFatAmount,
-              carbonhydratesAmount: nutrientsCarbonhydratesAmount,
-              proteinAmount: nutrientsProteinAmount,
+              // calorie: number,
+              // fatAmount: nutrientsFatAmount,
+              // carbonhydratesAmount: nutrientsCarbonhydratesAmount,
+              // proteinAmount: nutrientsProteinAmount,
             });
         }}
       >

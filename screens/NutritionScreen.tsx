@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Dimensions,
@@ -20,17 +20,41 @@ import Search from "../components/Search";
 import TodaysCard from "../components/TodaysCard";
 import FeaturedCard from "../components/FeaturedCard";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const image = {
   uri: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
 };
 
 const FirstRoute = () => {
-  const route = useRoute();
-  const { calorie, carbonhydratesAmount, fatAmount, proteinAmount }: any =
-    route.params || 0;
+  // const route = useRoute();
+  // const { calorie, carbonhydratesAmount, fatAmount, proteinAmount }: any =
+  //   route.params || 0;
 
-  console.log("Cal", calorie);
+  const [calorie, setCalorie] = useState(0);
+  const [carbonhydratesAmount, setCarbonhydratesAmount] = useState(0);
+  const [fatAmount, setFatAmount] = useState(0);
+  const [proteinAmount, setProteinAmount] = useState(0);
+
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("@calNumber");
+      jsonValue != null ? JSON.parse(jsonValue) : null;
+      //@ts-ignore
+      const parsedValues = JSON.parse(jsonValue);
+      if (parsedValues !== null) {
+        setCalorie(Number(parsedValues.number));
+        setCarbonhydratesAmount(parsedValues.nutrientsCarbonhydratesAmount);
+        setFatAmount(parsedValues.nutrientsFatAmount);
+        setProteinAmount(parsedValues.nutrientsProteinAmount);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  getData();
+
   return (
     <ImageBackground
       source={image}
@@ -100,137 +124,201 @@ const FirstRoute = () => {
   );
 };
 
-const SecondRoute = () => (
-  <ImageBackground
-    source={image}
-    resizeMode="cover"
-    style={styles.image}
-    imageStyle={{
-      opacity: 0.5,
-    }}
-  >
-    <View style={styles.indicator}>
-      <Text style={styles.title}>0</Text>
-      <Text style={styles.text}>kCal / week</Text>
-    </View>
-    <View
-      style={{
-        padding: 30,
-        justifyContent: "space-around",
-        flexDirection: "row",
-      }}
-    >
-      <View style={styles.ingredient}>
-        <View
-          style={{
-            width: 25,
-            height: 25,
-            borderRadius: 150,
-            backgroundColor: "orange",
-          }}
-        ></View>
-        <View style={{ marginLeft: 5 }}>
-          <Text>Fat</Text>
-          <Text>0 g</Text>
-        </View>
-      </View>
-      <View style={styles.ingredient}>
-        <View
-          style={{
-            width: 25,
-            height: 25,
-            borderRadius: 150,
-            backgroundColor: "#25AB75",
-          }}
-        ></View>
-        <View style={{ marginLeft: 5 }}>
-          <Text>Carbonhydrates</Text>
-          <Text>0 g</Text>
-        </View>
-      </View>
-      <View style={styles.ingredient}>
-        <View
-          style={{
-            width: 25,
-            height: 25,
-            borderRadius: 150,
-            backgroundColor: "blue",
-          }}
-        ></View>
-        <View style={{ marginLeft: 5 }}>
-          <Text>Protein</Text>
-          <Text>0 g</Text>
-        </View>
-      </View>
-    </View>
-  </ImageBackground>
-);
+const SecondRoute = () => {
+  // const route = useRoute();
+  // const { calorie, carbonhydratesAmount, fatAmount, proteinAmount }: any =
+  //   route.params || 0;
 
-const ThirdRoute = () => (
-  <ImageBackground
-    source={image}
-    resizeMode="cover"
-    style={styles.image}
-    imageStyle={{
-      opacity: 0.5,
-    }}
-  >
-    <View style={styles.indicator}>
-      <Text style={styles.title}>0</Text>
-      <Text style={styles.text}>kCal / month</Text>
-    </View>
-    <View
-      style={{
-        padding: 30,
-        justifyContent: "space-around",
-        flexDirection: "row",
+  const [calorie, setCalorie] = useState(0);
+  const [carbonhydratesAmount, setCarbonhydratesAmount] = useState(0);
+  const [fatAmount, setFatAmount] = useState(0);
+  const [proteinAmount, setProteinAmount] = useState(0);
+
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("@calNumber");
+      jsonValue != null ? JSON.parse(jsonValue) : null;
+      //@ts-ignore
+      const parsedValues = JSON.parse(jsonValue);
+      if (parsedValues !== null) {
+        setCalorie(Number(parsedValues.number));
+        setCarbonhydratesAmount(parsedValues.nutrientsCarbonhydratesAmount);
+        setFatAmount(parsedValues.nutrientsFatAmount);
+        setProteinAmount(parsedValues.nutrientsProteinAmount);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  getData();
+
+  return (
+    <ImageBackground
+      source={image}
+      resizeMode="cover"
+      style={styles.image}
+      imageStyle={{
+        opacity: 0.5,
       }}
     >
-      <View style={styles.ingredient}>
-        <View
-          style={{
-            width: 25,
-            height: 25,
-            borderRadius: 150,
-            backgroundColor: "orange",
-          }}
-        ></View>
-        <View style={{ marginLeft: 5 }}>
-          <Text>Fat</Text>
-          <Text>0 g</Text>
+      <View style={styles.indicator}>
+        <Text style={styles.title}>{calorie || 0}</Text>
+        <Text style={styles.text}>kCal / day</Text>
+      </View>
+      <View
+        style={{
+          justifyContent: "space-around",
+          flexDirection: "row",
+          padding: 30,
+        }}
+      >
+        <View style={styles.ingredient}>
+          <View
+            style={{
+              width: 25,
+              height: 25,
+              borderRadius: 150,
+              backgroundColor: "orange",
+            }}
+          ></View>
+          <View style={{ marginLeft: 5 }}>
+            <Text>Fat</Text>
+            <Text>{Math.ceil((calorie / 100) * fatAmount) || 0} g</Text>
+          </View>
+        </View>
+        <View style={styles.ingredient}>
+          <View
+            style={{
+              width: 25,
+              height: 25,
+              borderRadius: 150,
+              backgroundColor: "#25AB75",
+            }}
+          ></View>
+          <View style={{ marginLeft: 5 }}>
+            <Text>Carbonhydrates</Text>
+            <Text>
+              {Math.ceil((calorie / 100) * carbonhydratesAmount) || 0} g
+            </Text>
+          </View>
+        </View>
+        <View style={styles.ingredient}>
+          <View
+            style={{
+              width: 25,
+              height: 25,
+              borderRadius: 150,
+              backgroundColor: "blue",
+            }}
+          ></View>
+          <View style={{ marginLeft: 5 }}>
+            <Text>Protein</Text>
+            <Text>{Math.ceil((calorie / 100) * proteinAmount) || 0} g</Text>
+          </View>
         </View>
       </View>
-      <View style={styles.ingredient}>
-        <View
-          style={{
-            width: 25,
-            height: 25,
-            borderRadius: 150,
-            backgroundColor: "#25AB75",
-          }}
-        ></View>
-        <View style={{ marginLeft: 5 }}>
-          <Text>Carbonhydrates</Text>
-          <Text>0 g</Text>
+    </ImageBackground>
+  );
+};
+
+const ThirdRoute = () => {
+  // const route = useRoute();
+  // const { calorie, carbonhydratesAmount, fatAmount, proteinAmount }: any =
+  //   route.params || 0;
+
+  const [calorie, setCalorie] = useState(0);
+  const [carbonhydratesAmount, setCarbonhydratesAmount] = useState(0);
+  const [fatAmount, setFatAmount] = useState(0);
+  const [proteinAmount, setProteinAmount] = useState(0);
+
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("@calNumber");
+      jsonValue != null ? JSON.parse(jsonValue) : null;
+      //@ts-ignore
+      const parsedValues = JSON.parse(jsonValue);
+      if (parsedValues !== null) {
+        setCalorie(Number(parsedValues.number));
+        setCarbonhydratesAmount(parsedValues.nutrientsCarbonhydratesAmount);
+        setFatAmount(parsedValues.nutrientsFatAmount);
+        setProteinAmount(parsedValues.nutrientsProteinAmount);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  getData();
+
+  return (
+    <ImageBackground
+      source={image}
+      resizeMode="cover"
+      style={styles.image}
+      imageStyle={{
+        opacity: 0.5,
+      }}
+    >
+      <View style={styles.indicator}>
+        <Text style={styles.title}>{calorie || 0}</Text>
+        <Text style={styles.text}>kCal / day</Text>
+      </View>
+      <View
+        style={{
+          justifyContent: "space-around",
+          flexDirection: "row",
+          padding: 30,
+        }}
+      >
+        <View style={styles.ingredient}>
+          <View
+            style={{
+              width: 25,
+              height: 25,
+              borderRadius: 150,
+              backgroundColor: "orange",
+            }}
+          ></View>
+          <View style={{ marginLeft: 5 }}>
+            <Text>Fat</Text>
+            <Text>{Math.ceil((calorie / 100) * fatAmount) || 0} g</Text>
+          </View>
+        </View>
+        <View style={styles.ingredient}>
+          <View
+            style={{
+              width: 25,
+              height: 25,
+              borderRadius: 150,
+              backgroundColor: "#25AB75",
+            }}
+          ></View>
+          <View style={{ marginLeft: 5 }}>
+            <Text>Carbonhydrates</Text>
+            <Text>
+              {Math.ceil((calorie / 100) * carbonhydratesAmount) || 0} g
+            </Text>
+          </View>
+        </View>
+        <View style={styles.ingredient}>
+          <View
+            style={{
+              width: 25,
+              height: 25,
+              borderRadius: 150,
+              backgroundColor: "blue",
+            }}
+          ></View>
+          <View style={{ marginLeft: 5 }}>
+            <Text>Protein</Text>
+            <Text>{Math.ceil((calorie / 100) * proteinAmount) || 0} g</Text>
+          </View>
         </View>
       </View>
-      <View style={styles.ingredient}>
-        <View
-          style={{
-            width: 25,
-            height: 25,
-            borderRadius: 150,
-            backgroundColor: "blue",
-          }}
-        ></View>
-        <View style={{ marginLeft: 5 }}>
-          <Text>Protein</Text>
-          <Text>0 g</Text>
-        </View>
-      </View>
-    </View>
-  </ImageBackground>
-);
+    </ImageBackground>
+  );
+};
 
 const initialLayout = { width: Dimensions.get("window").width };
 
@@ -244,8 +332,8 @@ const NutritionScreen: React.FC<
   any
 > = ({}: RootTabScreenProps<"Nutrition">) => {
   const navigation = useNavigation();
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
     { key: "first", title: "Today" },
     { key: "second", title: "Last 7" },
     { key: "third", title: "Last 30" },
