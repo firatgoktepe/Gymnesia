@@ -126,6 +126,9 @@ export default function ModalNutritionsAddScreen() {
           number &&
             navigation.navigate("Nutrition", {
               calorie: number,
+              fatAmount: nutrientsFatAmount,
+              carbonhydratesAmount: nutrientsCarbonhydratesAmount,
+              proteinAmount: nutrientsProteinAmount,
             });
         }}
       >
