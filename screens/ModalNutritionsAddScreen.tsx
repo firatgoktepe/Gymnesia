@@ -84,7 +84,7 @@ export default function ModalNutritionsAddScreen() {
 
   const onPress = () => {
     setNumber("");
-    saveCalorie();
+    number && saveCalorie();
     Keyboard.dismiss();
   };
 
