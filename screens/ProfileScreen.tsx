@@ -27,6 +27,7 @@ const ProfileScreen: React.FC<any> = () => {
   const [email, setEmail] = useState("");
   const [image, setImage] = useState(null);
   const [calNumber, setCalNumber] = useState(0); // calories
+  const [countNum, setCountNum] = useState(0); // count
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -45,7 +46,19 @@ const ProfileScreen: React.FC<any> = () => {
           }
         };
 
+        const getCountData = async () => {
+          try {
+            const jsonValue = await AsyncStorage.getItem("@countNumber");
+            jsonValue != null ? JSON.parse(jsonValue) : null;
+            //@ts-ignore
+            setCountNum(jsonValue);
+          } catch (e) {
+            console.log(e);
+          }
+        };
+
         getData();
+        getCountData();
       });
 
     return unsubscribe;
@@ -164,7 +177,11 @@ const ProfileScreen: React.FC<any> = () => {
       <View>
         <Text>
           Your Calorie intake:{" "}
-          <Text style={{ color: "#25AB75" }}>{calNumber || 0}</Text>
+          <Text style={{ color: "#25AB75" }}>{calNumber || 0} kCal</Text>
+        </Text>
+        <Text>
+          Your Count:{" "}
+          <Text style={{ color: "#25AB75" }}>{countNum || 0} minutes</Text>
         </Text>
       </View>
     </View>

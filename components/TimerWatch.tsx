@@ -18,11 +18,28 @@ import {
 // @ts-ignore
 import { Timer } from "react-native-stopwatch-timer";
 import Colors from "../constants/Colors";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const TimerWatch = () => {
   const [isTimerStart, setIsTimerStart] = useState(false);
-  const [timerDuration, setTimerDuration] = useState(300000);
+  const [timerDuration, setTimerDuration] = useState(10000);
   const [resetTimer, setResetTimer] = useState(false);
+  let [timeCounter, setTimeCounter] = useState(0);
+
+  console.log("Count", timeCounter);
+
+  // Set timeCount into Async Storage
+  const storeData = async () => {
+    try {
+      const jsonValue = JSON.stringify(timeCounter);
+      await AsyncStorage.setItem("@countNumber", jsonValue);
+      console.log("json", jsonValue);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  storeData();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -44,6 +61,9 @@ const TimerWatch = () => {
               Alert.alert(
                 "Time is over. Slide left to right for the next exercise"
               );
+              setTimeCounter(() => timeCounter + 5);
+              setIsTimerStart(false);
+              setResetTimer(true);
             }}
           />
           <Text style={styles.repsText}>4x15 reps</Text>
