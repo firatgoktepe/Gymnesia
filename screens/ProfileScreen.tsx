@@ -16,14 +16,40 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import storage from "@react-native-firebase/storage";
 import * as ImagePicker from "expo-image-picker";
+import { useNavigation } from "@react-navigation/native";
 import { ref, uploadBytes, getStorage } from "firebase/storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const ProfileScreen: React.FC<any> = ({ navigation }) => {
+const ProfileScreen: React.FC<any> = () => {
   let currentUserUID = firebase.auth().currentUser?.uid;
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [image, setImage] = useState(null);
+  const [calNumber, setCalNumber] = useState(0); // calories
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    const unsubscribe = navigation
+      // @ts-ignore
+      .addListener("tabPress", (e: any) => {
+        const getData = async () => {
+          try {
+            const jsonValue = await AsyncStorage.getItem("@calNumber");
+            jsonValue != null ? JSON.parse(jsonValue) : null;
+            //@ts-ignore
+            const parsedValues = JSON.parse(jsonValue);
+            setCalNumber(Number(parsedValues.number));
+          } catch (e) {
+            console.log(e);
+          }
+        };
+
+        getData();
+      });
+
+    return unsubscribe;
+  });
 
   useEffect(() => {
     async function getUserInfo() {
@@ -45,6 +71,22 @@ const ProfileScreen: React.FC<any> = ({ navigation }) => {
     }
     getUserInfo();
   }, []);
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const jsonValue = await AsyncStorage.getItem("@calNumber");
+  //       jsonValue != null ? JSON.parse(jsonValue) : null;
+  //       //@ts-ignore
+  //       const parsedValues = JSON.parse(jsonValue);
+  //       setCalNumber(Number(parsedValues.number));
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   };
+
+  //   getData();
+  // }, []);
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -119,6 +161,12 @@ const ProfileScreen: React.FC<any> = ({ navigation }) => {
           Logout
         </Text>
       </Pressable>
+      <View>
+        <Text>
+          Your Calorie intake:{" "}
+          <Text style={{ color: "#25AB75" }}>{calNumber || 0}</Text>
+        </Text>
+      </View>
     </View>
   );
 };
@@ -135,8 +183,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   profileLogo: {
-    width: 250,
-    height: 250,
+    width: 200,
+    height: 200,
     borderRadius: 150,
     marginRight: 10,
     marginTop: 20,
