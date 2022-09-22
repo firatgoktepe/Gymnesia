@@ -66,7 +66,6 @@ export default function ModalNutritionsAddScreen() {
     setNumber(newText);
   };
 
-  // Create or Update number
   const saveCalorie = async () => {
     const user = {
       number: number,
@@ -74,13 +73,21 @@ export default function ModalNutritionsAddScreen() {
       nutrientsCarbonhydratesAmount: nutrientsCarbonhydratesAmount,
       nutrientsProteinAmount: nutrientsProteinAmount,
     };
+    Alert.alert(
+      "Calorie added",
+      "Your calorie has been added to your daily calorie intake"
+    );
+
     try {
+      // @ts-ignore
       await AsyncStorage.setItem("@calNumber", JSON.stringify(user));
       console.log("USER", user);
     } catch (err) {
       console.log(err);
     }
   };
+
+  // Multiple user added in one array
 
   const onPress = () => {
     setNumber("");
