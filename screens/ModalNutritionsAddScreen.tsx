@@ -76,7 +76,10 @@ export default function ModalNutritionsAddScreen() {
     Alert.alert(
       "Calorie added",
       "Your calorie has been added to your daily calorie intake"
-    );
+    ),
+      {
+        text: "OK",
+      };
 
     try {
       // @ts-ignore
