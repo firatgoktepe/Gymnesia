@@ -14,6 +14,7 @@ export default function TimerScreen() {
       <SwiperFlatList
         showPagination
         paginationActiveColor={Colors.light.notification}
+        paginationStyle={{ top: 20 }}
       >
         {workouts.map((workout: WorkoutsDb) => (
           <View key={workout.id} style={styles.parent}>
@@ -21,10 +22,10 @@ export default function TimerScreen() {
               <Image style={styles.image} source={workout.gif} />
               <Text style={styles.text}>{workout.title}</Text>
             </View>
-            <TimerWatch />
           </View>
         ))}
       </SwiperFlatList>
+      <TimerWatch />
     </View>
   );
 }
@@ -32,10 +33,12 @@ export default function TimerScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "column",
+
     backgroundColor: "white",
   },
   parent: {
-    height: height * 0.7,
+    height: height * 0.5,
     width: width * 1,
     justifyContent: "space-around",
   },
