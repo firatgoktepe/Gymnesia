@@ -215,8 +215,28 @@ const ProfileScreen: React.FC<any> = () => {
           </Text>
         </Text>
         <Text>
-          Your Count:{" "}
+          Your Workout time:{" "}
           <Text style={{ color: "#25AB75" }}>{countNum || 0} minutes</Text>
+        </Text>
+        <Text>
+          Your consumed calorie:{" "}
+          <Text style={{ color: "#25AB75" }}>{countNum * 50 || "-"} kCal</Text>
+        </Text>
+        <Text>
+          Difference:{" "}
+          <Text
+            style={
+              [...new Set(number)].reduce((a, b) => a + b, 0) - countNum * 50 <
+              0
+                ? { color: "#25AB75" }
+                : { color: "#F95045" }
+            }
+          >
+            {Math.abs(
+              [...new Set(number)].reduce((a, b) => a + b, 0) - countNum * 50
+            ) || "-"}{" "}
+            kCal
+          </Text>
         </Text>
       </View>
     </View>
