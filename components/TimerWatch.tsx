@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   },
   sectionStyle: {
     flex: 1,
-    marginTop: 32,
+    marginBottom: 30,
     alignItems: "center",
     justifyContent: "center",
   },
