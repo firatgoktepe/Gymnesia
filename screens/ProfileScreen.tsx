@@ -28,6 +28,7 @@ const ProfileScreen: React.FC<any> = () => {
   const [image, setImage] = useState(null);
   const [calNumber, setCalNumber] = useState(0); // calories
   const [countNum, setCountNum] = useState(0); // count
+  const [number, setNumber] = useState([]); // number
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -56,13 +57,31 @@ const ProfileScreen: React.FC<any> = () => {
             console.log(e);
           }
         };
+        const getNumberData = async () => {
+          try {
+            const jsonValue = await AsyncStorage.getItem("@calorieNumberr");
+            console.log("wwwwwww", jsonValue);
+            let num = jsonValue != null ? Number(jsonValue) : null;
+            //@ts-ignore
+            setNumber((prev) => [...prev, num]);
+          } catch (e) {
+            console.log(e);
+          }
+        };
 
         getData();
         getCountData();
+        getNumberData();
       });
 
     return unsubscribe;
   });
+
+  console.log(
+    "Numbi numbi",
+    number.reduce((a, b) => a + b, 0),
+    [...new Set(number)]
+  );
 
   useEffect(() => {
     async function getUserInfo() {
@@ -85,6 +104,20 @@ const ProfileScreen: React.FC<any> = () => {
     getUserInfo();
   }, []);
 
+  // useEffect(() => {
+  //   const getNumberData = async () => {
+  //     try {
+  //       const jsonValue = await AsyncStorage.getItem("@calorieNumberr");
+  //       let num = jsonValue != null ? Number(jsonValue) : null;
+  //       //@ts-ignore
+  //       setNumber((prev) => [...prev, num]);
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   };
+
+  //   getNumberData();
+  // });
   // useEffect(() => {
   //   const getData = async () => {
   //     try {
@@ -177,7 +210,9 @@ const ProfileScreen: React.FC<any> = () => {
       <View>
         <Text>
           Your Calorie intake:{" "}
-          <Text style={{ color: "#25AB75" }}>{calNumber || 0} kCal</Text>
+          <Text style={{ color: "#25AB75" }}>
+            {[...new Set(number)].reduce((a, b) => a + b, 0) || 0} kCal
+          </Text>
         </Text>
         <Text>
           Your Count:{" "}

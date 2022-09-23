@@ -90,6 +90,20 @@ export default function ModalNutritionsAddScreen() {
     }
   };
 
+  // Set number into Async Storage
+  useEffect(() => {
+    const storeData = async () => {
+      try {
+        await AsyncStorage.setItem("@calorieNumberr", number);
+        console.log("jsosdsdsdsdn", typeof number);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    storeData();
+  }, [number]);
+
   // Multiple user added in one array
 
   const onPress = () => {
