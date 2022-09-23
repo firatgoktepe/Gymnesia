@@ -49,7 +49,7 @@ const ProfileScreen: React.FC<any> = () => {
         const getCountData = async () => {
           try {
             const jsonValue = await AsyncStorage.getItem("@countNumber");
-            jsonValue != null ? JSON.parse(jsonValue) : null;
+            jsonValue != null ? jsonValue : null;
             //@ts-ignore
             setCountNum(jsonValue);
           } catch (e) {

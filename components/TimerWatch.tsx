@@ -2,7 +2,7 @@
 // https://aboutreact.com/react-native-timer-stopwatch/
 
 // import React in our code
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // import all the components we are going to use
 import {
@@ -24,22 +24,24 @@ const TimerWatch = () => {
   const [isTimerStart, setIsTimerStart] = useState(false);
   const [timerDuration, setTimerDuration] = useState(10000);
   const [resetTimer, setResetTimer] = useState(false);
-  let [timeCounter, setTimeCounter] = useState(0);
+  const [timeCounter, setTimeCounter] = useState(0);
 
   console.log("Count", timeCounter);
 
   // Set timeCount into Async Storage
-  const storeData = async () => {
-    try {
-      const jsonValue = JSON.stringify(timeCounter);
-      await AsyncStorage.setItem("@countNumber", jsonValue);
-      console.log("json", jsonValue);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  useEffect(() => {
+    const storeData = async () => {
+      try {
+        const jsonValue = JSON.stringify(timeCounter);
+        await AsyncStorage.setItem("@countNumber", jsonValue);
+        console.log("json", jsonValue);
+      } catch (e) {
+        console.log(e);
+      }
+    };
 
-  storeData();
+    storeData();
+  });
 
   return (
     <SafeAreaView style={styles.container}>
@@ -60,7 +62,12 @@ const TimerWatch = () => {
             getMsecs={(time: number) => {
               console.log(time);
               if (!isTimerStart) {
-                setTimeCounter(() => Math.ceil((10000 - time) / 1000));
+                // if (time === 0) {
+                //   setTimeCounter(() => timerDuration / 1000);
+                // }
+
+                time < 10000 &&
+                  setTimeCounter(() => Math.ceil((10000 - time) / 1000));
               }
             }}
             // get instant time
@@ -68,7 +75,7 @@ const TimerWatch = () => {
               Alert.alert(
                 "Time is over. Slide left to right for the next exercise"
               );
-              setTimeCounter(() => timeCounter + 5);
+              //setTimeCounter(() => timeCounter + 5);
               setIsTimerStart(false);
               setResetTimer(true);
             }}
