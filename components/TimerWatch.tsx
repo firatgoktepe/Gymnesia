@@ -57,6 +57,13 @@ const TimerWatch = () => {
             //To reset
             options={options}
             //options for the styling
+            getMsecs={(time: number) => {
+              console.log(time);
+              if (!isTimerStart) {
+                setTimeCounter(() => Math.ceil((10000 - time) / 1000));
+              }
+            }}
+            // get instant time
             handleFinish={() => {
               Alert.alert(
                 "Time is over. Slide left to right for the next exercise"
