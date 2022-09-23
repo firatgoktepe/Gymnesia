@@ -25,15 +25,20 @@ const TimerWatch = () => {
   const [timerDuration, setTimerDuration] = useState(10000);
   const [resetTimer, setResetTimer] = useState(false);
   const [timeCounter, setTimeCounter] = useState(0);
+  const [totalTimeCounter, setTotalTimeCounter] = useState([]);
 
   console.log("Count", timeCounter);
+  console.log("Cousadsdasdasdsdant", totalTimeCounter);
+
+  let total = totalTimeCounter.reduce((a, b) => a + b, 0);
+  console.log("Total", total);
 
   // Set timeCount into Async Storage
   useEffect(() => {
     const storeData = async () => {
       try {
-        const jsonValue = JSON.stringify(timeCounter);
-        await AsyncStorage.setItem("@countNumber", jsonValue);
+        const jsonValue = JSON.stringify(total);
+        await AsyncStorage.setItem("@countNumberr", jsonValue);
         console.log("json", jsonValue);
       } catch (e) {
         console.log(e);
@@ -78,6 +83,8 @@ const TimerWatch = () => {
               //setTimeCounter(() => timeCounter + 5);
               setIsTimerStart(false);
               setResetTimer(true);
+              // @ts-ignore
+              setTotalTimeCounter((prev) => [...prev, timeCounter]);
             }}
           />
           <Text style={styles.repsText}>4x15 reps</Text>
