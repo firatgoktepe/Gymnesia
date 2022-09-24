@@ -64,12 +64,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   profileTitle: {
+    width: "100%",
+    backgroundColor: "black",
     fontSize: 15,
     lineHeight: 24,
     color: `${Colors.dark.text}`,
     fontWeight: Platform.OS === "android" ? "900" : "700",
     marginTop: 90,
-    marginLeft: 10,
+    paddingLeft: 5,
   },
   profileText: {
     fontSize: 12,
