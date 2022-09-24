@@ -22,7 +22,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const TimerWatch = () => {
   const [isTimerStart, setIsTimerStart] = useState(false);
-  const [timerDuration, setTimerDuration] = useState(10000);
+  const [timerDuration, setTimerDuration] = useState(5000);
   const [resetTimer, setResetTimer] = useState(false);
   const [timeCounter, setTimeCounter] = useState(0);
   const [totalTimeCounter, setTotalTimeCounter] = useState([]);
@@ -30,7 +30,7 @@ const TimerWatch = () => {
   console.log("Count", timeCounter);
   console.log("Cousadsdasdasdsdant", totalTimeCounter);
 
-  let total = totalTimeCounter.reduce((a, b) => a + b, 0);
+  let total = totalTimeCounter.reduce((a, b) => a + b, timeCounter);
   console.log("Total", total);
 
   // Set timeCount into Async Storage
@@ -39,7 +39,7 @@ const TimerWatch = () => {
       try {
         const jsonValue = JSON.stringify(total);
         await AsyncStorage.setItem("@countNumberr", jsonValue);
-        console.log("json", jsonValue);
+        console.log("jsonn", jsonValue);
       } catch (e) {
         console.log(e);
       }
@@ -71,8 +71,10 @@ const TimerWatch = () => {
                 //   setTimeCounter(() => timerDuration / 1000);
                 // }
 
-                time < 10000 &&
-                  setTimeCounter(() => Math.ceil((10000 - time) / 1000));
+                time < timerDuration &&
+                  setTimeCounter(() =>
+                    Math.ceil((timerDuration - time) / 1000)
+                  );
               }
             }}
             // get instant time

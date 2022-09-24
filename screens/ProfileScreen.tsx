@@ -50,7 +50,8 @@ const ProfileScreen: React.FC<any> = () => {
         const getCountData = async () => {
           try {
             const jsonValue = await AsyncStorage.getItem("@countNumberr");
-            jsonValue != null ? jsonValue : null;
+            let time = jsonValue != null ? jsonValue : null;
+            console.log("timeee", time);
             //@ts-ignore
             setCountNum(jsonValue);
           } catch (e) {
@@ -76,6 +77,8 @@ const ProfileScreen: React.FC<any> = () => {
 
     return unsubscribe;
   });
+
+  console.log("TimeCount beybe", countNum);
 
   console.log(
     "Numbi numbi",
