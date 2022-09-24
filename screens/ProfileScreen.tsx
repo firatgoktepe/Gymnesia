@@ -163,7 +163,6 @@ const ProfileScreen: React.FC<any> = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Profile</Text>
       <Pressable onPress={pickImage}>
         {image ? (
           <ImageBackground
@@ -171,12 +170,12 @@ const ProfileScreen: React.FC<any> = () => {
             style={styles.profileLogo}
             source={{ uri: image }}
           >
-            <AntDesign
+            {/* <AntDesign
               style={{ marginBottom: 35 }}
               name="clouduploado"
               size={44}
               color="white"
-            />
+            /> */}
           </ImageBackground>
         ) : (
           <ImageBackground
@@ -192,37 +191,61 @@ const ProfileScreen: React.FC<any> = () => {
           </ImageBackground>
         )}
       </Pressable>
-      <Text style={[styles.title, { color: "#25AB75", fontStyle: "italic" }]}>
-        {firstName && firstName}
-        <Text> </Text>
-        <Text style={[styles.title, { color: "#25AB75", fontStyle: "italic" }]}>
-          {lastName && lastName}
-        </Text>
-      </Text>
-      <Text style={[styles.title, { color: "#25AB75", fontStyle: "italic" }]}>
-        {email && email}
-      </Text>
-      <Pressable onPress={() => loggingOut()}>
-        <Text style={[styles.title, { color: "#F95045", fontSize: 25 }]}>
-          Logout
-        </Text>
-      </Pressable>
       <View>
-        <Text>
-          Your Calorie intake:{" "}
+        <Text style={[styles.title, { color: "#25AB75", fontStyle: "italic" }]}>
+          {firstName && firstName}
+          <Text> </Text>
+          <Text
+            style={[styles.title, { color: "#25AB75", fontStyle: "italic" }]}
+          >
+            {lastName && lastName}
+          </Text>
+        </Text>
+        <Text style={[styles.title, { color: "#25AB75", fontStyle: "italic" }]}>
+          {email && email}
+        </Text>
+      </View>
+
+      <View style={styles.calorie}>
+        <Text style={[styles.title, { color: "black", marginBottom: 10 }]}>
+          Total Calorie intake:{" "}
           <Text style={{ color: "#25AB75" }}>
             {[...new Set(number)].reduce((a, b) => a + b, 0) || 0} kCal
           </Text>
         </Text>
-        <Text>
-          Your Workout time:{" "}
+        <View
+          style={{
+            borderBottomColor: "black",
+            borderBottomWidth: StyleSheet.hairlineWidth,
+            alignSelf: "stretch",
+            marginBottom: 5,
+          }}
+        />
+        <Text style={[styles.title, { color: "black", marginBottom: 10 }]}>
+          Total Workout time:{" "}
           <Text style={{ color: "#25AB75" }}>{countNum || 0} minutes</Text>
         </Text>
-        <Text>
-          Your consumed calorie:{" "}
+        <View
+          style={{
+            borderBottomColor: "black",
+            borderBottomWidth: StyleSheet.hairlineWidth,
+            alignSelf: "stretch",
+            marginBottom: 5,
+          }}
+        />
+        <Text style={[styles.title, { color: "black", marginBottom: 10 }]}>
+          Total Calorie consumed:{" "}
           <Text style={{ color: "#25AB75" }}>{countNum * 50 || "-"} kCal</Text>
         </Text>
-        <Text>
+        <View
+          style={{
+            borderBottomColor: "black",
+            borderBottomWidth: StyleSheet.hairlineWidth,
+            alignSelf: "stretch",
+            marginBottom: 5,
+          }}
+        />
+        <Text style={[styles.title, { color: "black", marginBottom: 10 }]}>
           Difference:{" "}
           <Text
             style={
@@ -239,6 +262,18 @@ const ProfileScreen: React.FC<any> = () => {
           </Text>
         </Text>
       </View>
+      <Pressable onPress={() => loggingOut()}>
+        <Text
+          style={{
+            color: "#F95045",
+            fontSize: 20,
+            fontWeight: "bold",
+            marginBottom: 30,
+          }}
+        >
+          Logout
+        </Text>
+      </Pressable>
     </View>
   );
 };
@@ -247,12 +282,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 20,
+    textAlign: "center",
   },
   profileLogo: {
     width: 200,
@@ -263,6 +299,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     justifyContent: "flex-end",
     alignItems: "center",
+  },
+  calorie: {
+    flex: 1,
+    alignItems: "flex-start",
+    justifyContent: "center",
   },
 });
 
