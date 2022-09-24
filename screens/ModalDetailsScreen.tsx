@@ -4,10 +4,11 @@ import {
   ScrollView,
   ImageBackground,
   Platform,
+  View,
 } from "react-native";
 import Colors from "../constants/Colors";
 import { MonoText } from "../components/StyledText";
-import { View, Text } from "../components/Themed";
+import { Text } from "../components/Themed";
 import { EvilIcons, Ionicons } from "@expo/vector-icons";
 import Search from "../components/Search";
 import { workouts } from "../db";
@@ -27,20 +28,22 @@ export default function WorkoutCard() {
         style={styles.image}
         imageStyle={{ borderRadius: 10 }}
       >
-        <MonoText style={styles.profileTitle}>{title}</MonoText>
-        <MonoText style={styles.profileText}>{`${task} Task`}</MonoText>
-        <MonoText style={styles.profileText}>
-          <EvilIcons name="heart" size={12} color={`${Colors.dark.text}`} />
-          {` ${calories} kCal   `}
+        <View style={styles.contentContainer}>
+          <MonoText style={styles.profileTitle}>{title}</MonoText>
+          <MonoText style={styles.profileText}>{`${task} Task`}</MonoText>
           <MonoText style={styles.profileText}>
-            <Ionicons
-              name="time-outline"
-              size={12}
-              color={`${Colors.dark.text}`}
-            />
-            {` ${duration} Min`}
+            <EvilIcons name="heart" size={12} color={`${Colors.dark.text}`} />
+            {` ${calories} kCal   `}
+            <MonoText style={styles.profileText}>
+              <Ionicons
+                name="time-outline"
+                size={12}
+                color={`${Colors.dark.text}`}
+              />
+              {` ${duration} Min`}
+            </MonoText>
           </MonoText>
-        </MonoText>
+        </View>
       </ImageBackground>
       <View style={styles.descriptionContainer}>
         <HeadingText style={styles.headingText}>{title}</HeadingText>
@@ -67,12 +70,18 @@ const styles = StyleSheet.create({
     shadowRadius: 6.27,
     elevation: 10,
   },
+  contentContainer: {
+    top: 120,
+    height: 100,
+    backgroundColor: "black",
+    padding: 15,
+  },
   profileTitle: {
     fontSize: 20,
     lineHeight: 24,
     color: `${Colors.dark.text}`,
     fontWeight: Platform.OS === "android" ? "900" : "700",
-    marginTop: 190,
+
     marginLeft: 10,
   },
   descriptionContainer: {
