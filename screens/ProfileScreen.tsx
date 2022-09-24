@@ -192,7 +192,12 @@ const ProfileScreen: React.FC<any> = () => {
         )}
       </Pressable>
       <View>
-        <Text style={[styles.title, { color: "#25AB75", fontStyle: "italic" }]}>
+        <Text
+          style={[
+            styles.title,
+            { color: "#25AB75", fontStyle: "italic", marginBottom: 0 },
+          ]}
+        >
           {firstName && firstName}
           <Text> </Text>
           <Text
@@ -266,9 +271,9 @@ const ProfileScreen: React.FC<any> = () => {
         <Text
           style={{
             color: "#F95045",
-            fontSize: 20,
-            fontWeight: "bold",
+            fontSize: 18,
             marginBottom: 30,
+            fontStyle: "italic",
           }}
         >
           Logout
@@ -285,7 +290,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
     marginBottom: 20,
     textAlign: "center",
