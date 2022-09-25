@@ -10,7 +10,7 @@ Install the below tools/packages
 |     2     |       npm        | >= 3.10.8 | [Install NPM](https://www.npmjs.com/get-npm)                               |
 |     3     |   react-native   | >= 0.51.0 | [Install react-native](https://www.npmjs.com/package/react-native)         |
 |     4     | react-native-cli | >= 2.0.1  | [Install react-native-cli](https://www.npmjs.com/package/react-native-cli) |
-|     5     |       exp        | >= 47.1.1 | [Install Expo](https://www.npmjs.com/package/exp)                          |
+|     5     |       expo       | >= 47.1.1 | [Install Expo](https://www.npmjs.com/package/exp)                          |
 
 ### Setup Instructions
 
@@ -20,7 +20,7 @@ Install the below tools/packages
 2. Switch to the project's root directory in terminal
 3. Install the dependencies by running `npm install`
 4. Once, 'npm install' is completed, run `exp start` to start the expo and react-native server
-5. If it shows a QR code on the terminal as a result of 'exp start' command, then you are good to go!
+5. If it shows a QR code on the terminal as a result of 'expo start' command, then you are good to go!
 
 Ignore the first step on 'Mobile setup' instructions given below if you already have 'Expo' app installed on your phone.
 
