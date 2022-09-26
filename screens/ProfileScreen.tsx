@@ -231,7 +231,11 @@ const ProfileScreen: React.FC<any> = () => {
         />
         <Text style={[styles.title, { color: "black", marginBottom: 10 }]}>
           Total Workout time:{" "}
-          <Text style={{ color: "#25AB75" }}>{countNum || 0} minutes</Text>
+          <Text style={{ color: "#25AB75" }}>
+            {(countNum < 60
+              ? countNum + " seconds"
+              : Math.floor(countNum / 60) + " minutes") || 0}{" "}
+          </Text>
         </Text>
         <View
           style={{
@@ -243,7 +247,7 @@ const ProfileScreen: React.FC<any> = () => {
         />
         <Text style={[styles.title, { color: "black", marginBottom: 10 }]}>
           Total Calorie consumed:{" "}
-          <Text style={{ color: "#25AB75" }}>{countNum * 50 || "-"} kCal</Text>
+          <Text style={{ color: "#25AB75" }}>{countNum / 10 || "-"} kCal</Text>
         </Text>
         <View
           style={{
@@ -257,14 +261,14 @@ const ProfileScreen: React.FC<any> = () => {
           Difference:{" "}
           <Text
             style={
-              [...new Set(number)].reduce((a, b) => a + b, 0) - countNum * 50 <
+              [...new Set(number)].reduce((a, b) => a + b, 0) - countNum / 10 <
               0
                 ? { color: "#25AB75" }
                 : { color: "#F95045" }
             }
           >
             {Math.abs(
-              [...new Set(number)].reduce((a, b) => a + b, 0) - countNum * 50
+              [...new Set(number)].reduce((a, b) => a + b, 0) - countNum / 10
             ) || "-"}{" "}
             kCal
           </Text>
