@@ -22,7 +22,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const TimerWatch = () => {
   const [isTimerStart, setIsTimerStart] = useState(false);
-  const [timerDuration, setTimerDuration] = useState(5000);
+  const [timerDuration, setTimerDuration] = useState(300000);
   const [resetTimer, setResetTimer] = useState(false);
   const [timeCounter, setTimeCounter] = useState(0);
   const [totalTimeCounter, setTotalTimeCounter] = useState([]);
