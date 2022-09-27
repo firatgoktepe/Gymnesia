@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     top: 120,
     height: 100,
-    backgroundColor: "black",
+    backgroundColor: "#25AB75",
     padding: 15,
   },
   profileTitle: {

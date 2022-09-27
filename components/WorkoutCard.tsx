@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     width: 320,
     top: 50,
     flexDirection: "column",
-    backgroundColor: "black",
+    backgroundColor: "#25AB75",
     height: 80,
     padding: 5,
   },
