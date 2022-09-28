@@ -71,10 +71,12 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   contentContainer: {
-    top: 120,
+    top: 125,
     height: 100,
     backgroundColor: "#25AB75",
     padding: 15,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
   profileTitle: {
     fontSize: 20,
