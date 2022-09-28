@@ -69,6 +69,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#25AB75",
     height: 80,
     padding: 5,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
   profileTitle: {
     fontSize: 20,
