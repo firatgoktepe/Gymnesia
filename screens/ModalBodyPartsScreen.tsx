@@ -2,21 +2,53 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Text } from "../components/Themed";
 import { useRoute } from "@react-navigation/native";
-import Model from "react-native-body-highlighter";
+import Body from "../components/BodyPart";
 
 const ModalBodyPartsScreen = () => {
   const route = useRoute();
   // @ts-ignore
   const { currSlide } = route.params;
-  const data = [
+  const dataBenchPress = [
     { slug: "chest", intensity: 1 },
-    { slug: "abs", intensity: 2 },
+    { slug: "triceps", intensity: 2 },
   ];
+  const dataPushUp = [
+    { slug: "chest", intensity: 1 },
+    { slug: "back-deltoids", intensity: 2 },
+  ];
+  const dataResistance = [
+    { slug: "hamstring", intensity: 2 },
+    { slug: "gluteal", intensity: 1 },
+  ];
+  const dataFullBody = [
+    { slug: "upper-back", intensity: 1 },
+    { slug: "lower-back", intensity: 2 },
+    { slug: "back-deltoids", intensity: 2 },
+    { slug: "forearm", intensity: 2 },
+    { slug: "calves", intensity: 2 },
+    { slug: "neck", intensity: 2 },
+  ];
+
+  const data =
+    currSlide == 0
+      ? dataBenchPress
+      : currSlide == 1
+      ? dataPushUp
+      : currSlide == 2
+      ? dataResistance
+      : currSlide == 3
+      ? dataFullBody
+      : "";
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>ModalBodyPartsScreen</Text>
+      <Text style={styles.title}>Muscles you got pumped</Text>
       <Text>{currSlide}</Text>
+      <Body
+        // @ts-ignore
+        data={data}
+        scale={2}
+      />
     </View>
   );
 };
