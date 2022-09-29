@@ -28,7 +28,8 @@ const ProfileScreen: React.FC<any> = () => {
   const [image, setImage] = useState(null);
   const [calNumber, setCalNumber] = useState(0); // calories
   const [countNum, setCountNum] = useState(0); // count
-  const [number, setNumber] = useState([]); // number
+  const [number, setNumber] = useState([]);
+  const [currSlide, setCurrSlide] = useState(0); // number
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -70,9 +71,21 @@ const ProfileScreen: React.FC<any> = () => {
           }
         };
 
+        const getcurrentSlide = async () => {
+          try {
+            const jsonValue = await AsyncStorage.getItem("@currentSlide");
+            console.log("slideNow", jsonValue);
+            //@ts-ignore
+            setCurrSlide(jsonValue);
+          } catch (e) {
+            console.log(e);
+          }
+        };
+
         getData();
         getCountData();
         getNumberData();
+        getcurrentSlide();
       });
 
     return unsubscribe;
@@ -273,6 +286,14 @@ const ProfileScreen: React.FC<any> = () => {
             kCal
           </Text>
         </Text>
+        <Pressable
+          style={styles.button}
+          onPress={() =>
+            navigation.navigate("BodyParts", { currSlide: currSlide })
+          }
+        >
+          <Text style={styles.buttonText}>See your progress</Text>
+        </Pressable>
       </View>
       <Pressable onPress={() => loggingOut()}>
         <Text
@@ -316,6 +337,24 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "flex-start",
     justifyContent: "center",
+  },
+  button: {
+    width: 350,
+    padding: 5,
+    backgroundColor: "#F95045",
+    borderWidth: 2,
+    borderColor: "white",
+    borderRadius: 15,
+    alignSelf: "center",
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  buttonText: {
+    fontSize: 20,
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+    padding: 10,
   },
 });
 
