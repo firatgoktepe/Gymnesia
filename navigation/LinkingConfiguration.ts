@@ -45,6 +45,7 @@ const linking: LinkingOptions<RootStackParamList> = {
       Workout: 'modal',
       Notification: "modal",
       Nutritions: 'modal',
+      BodyParts: 'modal',
       NutritionsAdd: 'modal',
       NotFound: '*',
     },

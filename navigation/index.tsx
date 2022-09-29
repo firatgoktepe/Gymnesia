@@ -31,6 +31,7 @@ import ModalDetailsScreen from "../screens/ModalDetailsScreen";
 import ModalFeaturedDetails from "../screens/ModalFeaturedDetails";
 import ModalNotificationScreen from "../screens/ModalNotificationScreen";
 import ModalNutritionsScreen from "../screens/ModalNutritionsScreen";
+import ModalBodyPartsScreen from "../screens/ModalBodyPartsScreen";
 import ModalNutritionsAddScreen from "../screens/ModalNutritionsAddScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import HomeScreen from "../screens/HomeScreen";
@@ -114,6 +115,9 @@ function RootNavigator() {
       </Stack.Group>
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name="Nutritions" component={ModalNutritionsScreen} />
+      </Stack.Group>
+      <Stack.Group screenOptions={{ presentation: "modal" }}>
+        <Stack.Screen name="BodyParts" component={ModalBodyPartsScreen} />
       </Stack.Group>
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen
