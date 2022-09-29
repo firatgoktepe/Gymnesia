@@ -20,9 +20,9 @@ import { Timer } from "react-native-stopwatch-timer";
 import Colors from "../constants/Colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const TimerWatch = () => {
+const TimerWatch: React.FC<any> = ({ getCurrentIndex }) => {
   const [isTimerStart, setIsTimerStart] = useState(false);
-  const [timerDuration, setTimerDuration] = useState(300000);
+  const [timerDuration, setTimerDuration] = useState(5000);
   const [resetTimer, setResetTimer] = useState(false);
   const [timeCounter, setTimeCounter] = useState(0);
   const [totalTimeCounter, setTotalTimeCounter] = useState([]);
@@ -87,6 +87,17 @@ const TimerWatch = () => {
               setResetTimer(true);
               // @ts-ignore
               setTotalTimeCounter((prev) => [...prev, timeCounter]);
+              getCurrentIndex();
+              const storeCurrentSlide = async () => {
+                try {
+                  const jsonValue = JSON.stringify(getCurrentIndex());
+                  await AsyncStorage.setItem("@currentSlide", jsonValue);
+                  console.log("json123123123123n", jsonValue);
+                } catch (e) {
+                  console.log(e);
+                }
+              };
+              storeCurrentSlide();
             }}
           />
           <Text style={styles.repsText}>4x15 reps</Text>

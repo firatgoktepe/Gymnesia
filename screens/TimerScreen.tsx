@@ -1,4 +1,5 @@
-import { StyleSheet, Image, Dimensions, Platform } from "react-native";
+import React from "react";
+import { StyleSheet, Image, Dimensions, Platform, Alert } from "react-native";
 import { SwiperFlatList } from "react-native-swiper-flatlist";
 import { Text, View } from "../components/Themed";
 import Colors from "../constants/Colors";
@@ -9,12 +10,26 @@ import TimerWatch from "../components/TimerWatch";
 export const { width, height } = Dimensions.get("window");
 
 export default function TimerScreen() {
+  const scrollRef = React.useRef<SwiperFlatList>(null);
+  const getCurrentIndex = () => {
+    const currentIndex = scrollRef.current?.getCurrentIndex();
+    return currentIndex;
+  };
+
+  React.useEffect(() => {
+    getCurrentIndex();
+  });
   return (
     <View style={styles.container}>
       <SwiperFlatList
         showPagination
         paginationActiveColor={Colors.light.notification}
         paginationStyle={{ top: 20 }}
+        ref={scrollRef}
+        onChangeIndex={({ index, prevIndex }) => {
+          getCurrentIndex();
+          console.log("Come on", { index, prevIndex });
+        }}
       >
         {workouts.map((workout: WorkoutsDb) => (
           <View key={workout.id} style={styles.parent}>
@@ -25,7 +40,7 @@ export default function TimerScreen() {
           </View>
         ))}
       </SwiperFlatList>
-      <TimerWatch />
+      <TimerWatch getCurrentIndex={getCurrentIndex} />
     </View>
   );
 }
