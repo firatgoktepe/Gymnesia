@@ -286,14 +286,16 @@ const ProfileScreen: React.FC<any> = () => {
             kCal
           </Text>
         </Text>
-        <Pressable
-          style={styles.button}
-          onPress={() =>
-            navigation.navigate("BodyParts", { currSlide: currSlide })
-          }
-        >
-          <Text style={styles.buttonText}>See your progress</Text>
-        </Pressable>
+        {Platform.OS === "ios" ? (
+          <Pressable
+            style={styles.button}
+            onPress={() =>
+              navigation.navigate("BodyParts", { currSlide: currSlide })
+            }
+          >
+            <Text style={styles.buttonText}>See your progress</Text>
+          </Pressable>
+        ) : null}
       </View>
       <Pressable onPress={() => loggingOut()}>
         <Text
