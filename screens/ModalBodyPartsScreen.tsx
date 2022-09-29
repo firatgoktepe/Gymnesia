@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Text } from "../components/Themed";
 import { useRoute } from "@react-navigation/native";
-import Body from "react-native-body-highlighter";
+import Model from "react-native-body-highlighter";
 
 const ModalBodyPartsScreen = () => {
   const route = useRoute();
@@ -17,10 +17,6 @@ const ModalBodyPartsScreen = () => {
     <View style={styles.container}>
       <Text style={styles.title}>ModalBodyPartsScreen</Text>
       <Text>{currSlide}</Text>
-      <Body
-        //@ts-ignore}
-        data={data}
-      />
     </View>
   );
 };
