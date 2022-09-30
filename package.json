@@ -37,7 +37,6 @@
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.5",
-    "react-native-body-highlighter": "^2.1.0",
     "react-native-gesture-handler": "~2.5.0",
     "react-native-pager-view": "5.4.24",
     "react-native-safe-area-context": "4.3.1",
