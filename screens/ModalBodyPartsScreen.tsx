@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Alert } from "react-native";
 import { Text } from "../components/Themed";
 import { useRoute } from "@react-navigation/native";
 import Body from "../components/BodyPart";
@@ -8,6 +8,7 @@ const ModalBodyPartsScreen = () => {
   const route = useRoute();
   // @ts-ignore
   const { currSlide } = route.params;
+
   const dataBenchPress = [
     { slug: "chest", intensity: 1 },
     { slug: "triceps", intensity: 2 },
@@ -15,6 +16,7 @@ const ModalBodyPartsScreen = () => {
   const dataPushUp = [
     { slug: "chest", intensity: 1 },
     { slug: "back-deltoids", intensity: 2 },
+    { slug: "abs", intensity: 1 },
   ];
   const dataResistance = [
     { slug: "hamstring", intensity: 2 },
@@ -25,8 +27,11 @@ const ModalBodyPartsScreen = () => {
     { slug: "lower-back", intensity: 2 },
     { slug: "back-deltoids", intensity: 2 },
     { slug: "forearm", intensity: 2 },
-    { slug: "calves", intensity: 2 },
+    { slug: "abductors", intensity: 1 },
+    { slug: "quadriceps", intensity: 1 },
+    { slug: "calves", intensity: 1 },
     { slug: "neck", intensity: 2 },
+    { slug: "gluteal", intensity: 1 },
   ];
 
   const data =
@@ -42,13 +47,73 @@ const ModalBodyPartsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Muscles you got pumped</Text>
-      <Text>{currSlide}</Text>
+      <Text
+        style={{
+          color: "black",
+          fontSize: 22,
+          fontWeight: "bold",
+          textAlign: "center",
+          marginTop: 20,
+          marginBottom: 20,
+        }}
+      >
+        Your body
+      </Text>
       <Body
         // @ts-ignore
         data={data}
         scale={2}
+        colors={["#25AB75", "#7ddbb6"]}
       />
+
+      <View style={styles.calorie}>
+        <Text
+          style={{
+            color: "black",
+            fontSize: 22,
+            fontWeight: "bold",
+            textAlign: "center",
+          }}
+        >
+          Result
+        </Text>
+        <Text style={[styles.title, { color: "black", marginBottom: 10 }]}>
+          Your last exercise:{" "}
+          <Text style={{ color: "#F95045" }}>
+            {currSlide == 0
+              ? "Bench Press"
+              : currSlide == 1
+              ? "Push Up"
+              : currSlide == 2
+              ? "Resistance Band"
+              : currSlide == 3
+              ? "Full Body"
+              : "No exercise"}
+          </Text>
+        </Text>
+        <View
+          style={{
+            borderBottomColor: "black",
+            borderBottomWidth: StyleSheet.hairlineWidth,
+            alignSelf: "stretch",
+            marginBottom: 5,
+          }}
+        />
+        <Text style={[styles.title, { color: "black", marginBottom: 10 }]}>
+          Muscles group you pumped:{" "}
+          <Text style={{ color: "#25AB75" }}>
+            {currSlide == 0
+              ? "Chest and Triceps"
+              : currSlide == 1
+              ? "Chest, Abs and Back-deltoids"
+              : currSlide == 2
+              ? "Hamstring and Gluteal"
+              : currSlide == 3
+              ? "Upper-back, Lower-back, Back-deltoids, Forearm, Calves, Abductors, Gluteal, Quadriceps and Neck"
+              : "No muscles pumped yet"}
+          </Text>
+        </Text>
+      </View>
     </View>
   );
 };
@@ -62,31 +127,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "bold",
+    marginTop: 20,
     marginBottom: 20,
     textAlign: "center",
   },
   calorie: {
     flex: 1,
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "center",
-  },
-  button: {
-    width: 350,
-    padding: 5,
-    backgroundColor: "#F95045",
-    borderWidth: 2,
-    borderColor: "white",
-    borderRadius: 15,
-    alignSelf: "center",
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  buttonText: {
-    fontSize: 20,
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-    padding: 10,
   },
 });
 
