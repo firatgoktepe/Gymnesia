@@ -15,7 +15,6 @@ import { workouts } from "../db";
 const title: string = workouts[0].title;
 const calories: number = workouts[0].calories;
 const duration: number = workouts[0].duration;
-const task: number = workouts[0].task;
 
 export default function WorkoutCard() {
   return (
@@ -27,7 +26,6 @@ export default function WorkoutCard() {
       >
         <View style={styles.contentContainer}>
           <MonoText style={styles.profileTitle}>{title}</MonoText>
-          <MonoText style={styles.profileText}>{`${task} Task`}</MonoText>
           <MonoText style={styles.profileText}>
             <EvilIcons name="heart" size={12} color={`${Colors.dark.text}`} />
             {` ${calories} kCal   `}
@@ -64,10 +62,10 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     width: 320,
-    top: 50,
+    top: 65,
     flexDirection: "column",
     backgroundColor: "#25AB75",
-    height: 80,
+    height: 60,
     padding: 5,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
