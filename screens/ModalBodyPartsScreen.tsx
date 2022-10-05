@@ -63,7 +63,7 @@ const ModalBodyPartsScreen = () => {
         // @ts-ignore
         data={data}
         scale={2}
-        colors={["#25AB75", "#7ddbb6"]}
+        colors={["#f21607", "#f28179"]}
       />
 
       <View style={styles.calorie}>
@@ -79,7 +79,7 @@ const ModalBodyPartsScreen = () => {
         </Text>
         <Text style={[styles.title, { color: "black", marginBottom: 10 }]}>
           Your last exercise:{" "}
-          <Text style={{ color: "#F95045" }}>
+          <Text style={{ color: "#25AB75" }}>
             {currSlide == 0
               ? "Bench Press"
               : currSlide == 1
@@ -101,7 +101,7 @@ const ModalBodyPartsScreen = () => {
         />
         <Text style={[styles.title, { color: "black", marginBottom: 10 }]}>
           Muscles group you pumped:{" "}
-          <Text style={{ color: "#25AB75" }}>
+          <Text style={{ color: "#F95045" }}>
             {currSlide == 0
               ? "Chest and Triceps"
               : currSlide == 1
