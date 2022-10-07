@@ -22,14 +22,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ProfileScreen: React.FC<any> = () => {
   let currentUserUID = firebase.auth().currentUser?.uid;
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [image, setImage] = useState(null);
-  const [calNumber, setCalNumber] = useState(0); // calories
-  const [countNum, setCountNum] = useState(0); // count
+  const [calNumber, setCalNumber] = useState<number>(0); // calories
+  const [countNum, setCountNum] = useState<number>(0); // count
   const [number, setNumber] = useState([]);
-  const [currSlide, setCurrSlide] = useState(0); // number
+  const [currSlide, setCurrSlide] = useState<number>(0); // number
   const navigation = useNavigation();
 
   useEffect(() => {
