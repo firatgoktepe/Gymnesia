@@ -31,10 +31,10 @@ const FirstRoute = () => {
   // const { calorie, carbonhydratesAmount, fatAmount, proteinAmount }: any =
   //   route.params || 0;
 
-  const [calorie, setCalorie] = useState(0);
-  const [carbonhydratesAmount, setCarbonhydratesAmount] = useState(0);
-  const [fatAmount, setFatAmount] = useState(0);
-  const [proteinAmount, setProteinAmount] = useState(0);
+  const [calorie, setCalorie] = useState<number>(0);
+  const [carbonhydratesAmount, setCarbonhydratesAmount] = useState<number>(0);
+  const [fatAmount, setFatAmount] = useState<number>(0);
+  const [proteinAmount, setProteinAmount] = useState<number>(0);
 
   useEffect(() => {
     const getData = async () => {
