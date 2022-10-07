@@ -12,9 +12,9 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { signIn } from "../API/firebaseMethods";
 
 const SignIn: React.FC<any> = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const toggleLoading = () => {
     setIsLoading(!isLoading);
