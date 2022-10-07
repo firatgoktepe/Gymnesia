@@ -21,10 +21,10 @@ import Colors from "../constants/Colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const TimerWatch: React.FC<any> = ({ getCurrentIndex }) => {
-  const [isTimerStart, setIsTimerStart] = useState(false);
-  const [timerDuration, setTimerDuration] = useState(5000);
-  const [resetTimer, setResetTimer] = useState(false);
-  const [timeCounter, setTimeCounter] = useState(0);
+  const [isTimerStart, setIsTimerStart] = useState<boolean>(false);
+  const [timerDuration, setTimerDuration] = useState<number>(5000);
+  const [resetTimer, setResetTimer] = useState<boolean>(false);
+  const [timeCounter, setTimeCounter] = useState<number>(0);
   const [totalTimeCounter, setTotalTimeCounter] = useState([]);
 
   console.log("Count", timeCounter);
