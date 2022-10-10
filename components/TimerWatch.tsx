@@ -20,7 +20,11 @@ import { Timer } from "react-native-stopwatch-timer";
 import Colors from "../constants/Colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const TimerWatch: React.FC<any> = ({ getCurrentIndex }) => {
+type AppProps = {
+  getCurrentIndex: () => void;
+};
+
+const TimerWatch = ({ getCurrentIndex }: AppProps) => {
   const [isTimerStart, setIsTimerStart] = useState<boolean>(false);
   const [timerDuration, setTimerDuration] = useState<number>(5000);
   const [resetTimer, setResetTimer] = useState<boolean>(false);

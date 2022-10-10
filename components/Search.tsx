@@ -4,7 +4,11 @@ import { MonoText } from "./StyledText";
 import { View } from "./Themed";
 import { AntDesign } from "@expo/vector-icons";
 
-const Search: React.FC<any> = ({ placeholder }) => {
+type AppProps = {
+  placeholder: string;
+};
+
+const Search = ({ placeholder }: AppProps) => {
   return (
     <View style={styles.searchSection}>
       <AntDesign
