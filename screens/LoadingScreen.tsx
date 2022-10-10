@@ -4,8 +4,9 @@ import "firebase/firestore";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import { RootStackScreenProps } from "../types";
 
-const LoadingScreen: React.FC<any> = ({ navigation }) => {
+const LoadingScreen = ({ navigation }: RootStackScreenProps<"Loading">) => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {

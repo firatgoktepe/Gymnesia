@@ -13,8 +13,11 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { registration } from "../API/firebaseMethods";
+import { RootStackScreenProps } from "../types";
 
-const SignUp: React.FC<any> = ({ navigation }) => {
+const SignUp: React.FC<any> = ({
+  navigation,
+}: RootStackScreenProps<"SignUp">) => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");

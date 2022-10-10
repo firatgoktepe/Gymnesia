@@ -1,8 +1,11 @@
 import { Image, StyleSheet, View, Text, Pressable } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { RootStackScreenProps } from "../types";
 
-const WelcomeScreen: React.FC<any> = ({ navigation }) => {
+const WelcomeScreen: React.FC<any> = ({
+  navigation,
+}: RootStackScreenProps<"HomePage">) => {
   return (
     <View style={styles.container}>
       <Image

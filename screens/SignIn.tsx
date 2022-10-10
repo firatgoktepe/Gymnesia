@@ -10,8 +10,11 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { signIn } from "../API/firebaseMethods";
+import { RootStackScreenProps } from "../types";
 
-const SignIn: React.FC<any> = ({ navigation }) => {
+const SignIn: React.FC<any> = ({
+  navigation,
+}: RootStackScreenProps<"SignIn">) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
