@@ -63,20 +63,20 @@ const SignUp: React.FC<any> = ({ navigation }) => {
             style={styles.textInput}
             placeholder="First name*"
             value={firstName}
-            onChangeText={(name) => setFirstName(name)}
+            onChangeText={(name) => setFirstName(name.trim())}
           />
           <TextInput
             style={styles.textInput}
             placeholder="Last name*"
             value={lastName}
-            onChangeText={(name) => setLastName(name)}
+            onChangeText={(name) => setLastName(name.trim())}
           />
 
           <TextInput
             style={styles.textInput}
             placeholder="Enter your email*"
             value={email}
-            onChangeText={(email) => setEmail(email)}
+            onChangeText={(email) => setEmail(email.trim())}
             keyboardType="email-address"
             autoCapitalize="none"
           />

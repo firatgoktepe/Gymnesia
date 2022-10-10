@@ -43,7 +43,7 @@ const SignIn: React.FC<any> = ({ navigation }) => {
         style={styles.formInput}
         placeholder="Enter your email"
         value={email}
-        onChangeText={(email) => setEmail(email)}
+        onChangeText={(email) => setEmail(email.trim())}
         autoCapitalize="none"
       />
       <TextInput
