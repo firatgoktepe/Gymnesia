@@ -41,7 +41,6 @@ export type RootTabParamList = {
   Timer: undefined;
   Nutrition: undefined;
   Profile: undefined;
-  Nutritions: any;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
