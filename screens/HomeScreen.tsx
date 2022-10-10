@@ -36,7 +36,7 @@ import FeaturedCard from "../components/FeaturedCard";
 
 export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
   let currentUserUID = firebase.auth().currentUser?.uid;
-  const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState<string>("");
 
   useEffect(() => {
     async function getUserInfo() {
