@@ -12,3 +12,5 @@ web-build/
 config/keys.ts 
 # macOS
 .DS_Store
+# test snapshots
+components/__tests__/__snapshots__/
