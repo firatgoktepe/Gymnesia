@@ -44,6 +44,7 @@ const SignIn: React.FC<any> = ({
 
       <TextInput
         style={styles.formInput}
+        testID={"inputEmail"} // added testID
         placeholder="Enter your email"
         value={email}
         onChangeText={(email) => setEmail(email.trim())}
@@ -51,6 +52,7 @@ const SignIn: React.FC<any> = ({
       />
       <TextInput
         style={styles.formInput}
+        testID={"inputPassword"} // added testID
         placeholder="Enter your password"
         value={password}
         onChangeText={(password) => setPassword(password)}
