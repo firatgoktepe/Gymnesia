@@ -1,7 +1,7 @@
 import * as React from 'react';
 import renderer from 'react-test-renderer';
 import { MonoText } from '../StyledText';
-import Search  from '../Header';
+import Search  from '../Search';
 import {render, cleanup} from '@testing-library/react-native';
 
 afterEach(cleanup);
