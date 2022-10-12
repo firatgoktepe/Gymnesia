@@ -19,7 +19,10 @@ const Header: React.FC<any> = ({ firstName, navigation }) => {
               lightColor="rgba(0,0,0,0.8)"
               darkColor="rgba(255,255,255,0.8)"
             >
-              Hello {firstName}
+              Hello{" "}
+              <MonoText testID="userName" style={styles.profileHeading}>
+                {firstName}
+              </MonoText>
               <MaterialCommunityIcons
                 name="hand-wave"
                 size={24}
