@@ -20,5 +20,13 @@ describe('<SignIn />', () => {
     expect(emailInput.props.value).toEqual('test');
     expect(passwordInput.props.value).toEqual('test');
   });
+
+  it('should have true placeholder names', () => {
+    const {getByTestId} = render(<SignIn />);
+    const emailInput = getByTestId('inputEmail');
+    const passwordInput = getByTestId('inputPassword');
+    expect(emailInput.props.placeholder).toEqual('Enter your email');
+    expect(passwordInput.props.placeholder).toEqual('Enter your password');
+  })
   
 });
