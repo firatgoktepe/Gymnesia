@@ -63,12 +63,14 @@ const SignUp: React.FC<any> = ({
 
         <ScrollView>
           <TextInput
+            testID={"inputName"} // added testID
             style={styles.textInput}
             placeholder="First name*"
             value={firstName}
             onChangeText={(name) => setFirstName(name.trim())}
           />
           <TextInput
+            testID={"inputSurName"} // added testID
             style={styles.textInput}
             placeholder="Last name*"
             value={lastName}
@@ -76,6 +78,7 @@ const SignUp: React.FC<any> = ({
           />
 
           <TextInput
+            testID={"inputEmail"} // added testID
             style={styles.textInput}
             placeholder="Enter your email*"
             value={email}
@@ -85,6 +88,7 @@ const SignUp: React.FC<any> = ({
           />
 
           <TextInput
+            testID={"inputPassword"} // added testID
             style={styles.textInput}
             placeholder="Enter your password*"
             value={password}
@@ -92,6 +96,7 @@ const SignUp: React.FC<any> = ({
             secureTextEntry={true}
           />
           <TextInput
+            testID={"inputConfirmPassword"} // added testID
             style={styles.textInput}
             placeholder="Retype your password to confirm*"
             value={confirmPassword}

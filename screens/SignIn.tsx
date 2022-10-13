@@ -59,7 +59,11 @@ const SignIn: React.FC<any> = ({
         secureTextEntry={true}
       />
 
-      <Pressable style={styles.button} onPress={handlePress}>
+      <Pressable
+        testID={"submitButton"}
+        style={styles.button}
+        onPress={handlePress}
+      >
         <View
           style={{
             flexDirection: "row",
