@@ -7,7 +7,6 @@ afterEach(cleanup);
 describe('<SignUp />', () => {
   it('should match the snapshot', () => {
     const rendered = render(<SignUp />).toJSON();
-    console.log("Sign in rendered", rendered.children[1]);
     expect(rendered).toMatchSnapshot();
   });
   
