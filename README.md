@@ -1,6 +1,6 @@
 ### Description
 
-##### Gymnesia is a fitness mobile app built with React Native, Typescript, Expo and Firebase. It is currently in development.
+Gymnesia is a fitness mobile app built with React Native, Typescript, Expo and Firebase. It is currently in development.
 
 ### Stack
 
