@@ -10,6 +10,35 @@ Gymnesia is a fitness mobile app built with React Native, Typescript, Expo and F
 4. Firebase for Authentication processes
 5. Dummy datas for nutritions and workouts
 
+##### ScreenShots
+
+<img 
+src="https://user-images.githubusercontent.com/47864126/196443344-312e835f-a0bf-4743-8d50-5e6f0903f1e0.png" 
+width="15%"></img> <img 
+src="https://user-images.githubusercontent.com/47864126/196443480-d9c8a477-d545-42d5-975a-6f7fb88d00e1.png" 
+width="15%"></img> <img 
+src="https://user-images.githubusercontent.com/47864126/196443559-8e8cb2f8-e2d4-4110-a585-59c38e8737c0.png" 
+width="15%"></img> <img 
+src="https://user-images.githubusercontent.com/47864126/196443571-d5942a9f-cc19-4fe9-8cfa-6cbef2d6280b.png" 
+width="15%"></img> <img 
+src="https://user-images.githubusercontent.com/47864126/196443584-227f55f5-906e-4a4f-9a55-4d2260ad2cd2.png" 
+width="15%"></img> <img 
+src="https://user-images.githubusercontent.com/47864126/196443676-32fb0380-8bfb-41a8-aa11-3fd10a8fa001.png" 
+width="15%"></img> <img 
+src="https://user-images.githubusercontent.com/47864126/196443704-871a382f-f601-4bb1-8e71-0610b04919c5.png" 
+width="15%"></img> <img 
+src="https://user-images.githubusercontent.com/47864126/196443757-b9ef629d-928c-4dda-8899-4c37c53cf54e.png" 
+width="15%"></img> <img 
+src="https://user-images.githubusercontent.com/47864126/196443782-e43ea095-59b5-420a-add3-da741353f527.png" 
+width="15%"></img> <img 
+src="https://user-images.githubusercontent.com/47864126/196443835-d0d5fd81-c143-44f7-a91d-ca90966e1dc4.png" 
+width="15%"></img> <img 
+src="https://user-images.githubusercontent.com/47864126/196443870-feee90ee-b62d-419c-b37e-bc3a9d52de83.png" 
+width="15%"></img> <img 
+src="https://user-images.githubusercontent.com/47864126/196443890-34f14cf5-cccc-43be-81c1-aacfbd5e4bd0.png" 
+width="15%"></img> <img 
+src="https://user-images.githubusercontent.com/47864126/196443897-4607f9d8-bbf0-47ea-8743-3d5e0938529d.png" 
+width="15%"></img> 
 
 ##### Screen Video
 
