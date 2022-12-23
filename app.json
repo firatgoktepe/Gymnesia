@@ -19,27 +19,35 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.developerfg.gymnesia"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.developerfg.gymnesia"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
-    "plugins": 
+    "plugins": [
+      "@react-native-firebase/app",
       [
-        "@react-native-firebase/app",
-        [
-          "expo-image-picker",
-          {
-            "photosPermission": "The app accesses your photos to let you share them with your friends."
-          }
-        ]
-        
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
       ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "72563d4e-24aa-480a-b152-84695a31a7da"
+      }
+    }
   }
 }
