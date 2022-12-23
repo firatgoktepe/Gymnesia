@@ -10,6 +10,18 @@ Gymnesia is a fitness mobile app built with React Native, Typescript, Expo and F
 4. Firebase for Authentication processes
 5. Dummy datas for nutritions and workouts
 
+### How to open 
+
+- Firstly download "Expo Go" app into your phone
+For Android: 
+https://play.google.com/store/apps/details?id=host.exp.exponent&hl=tr&gl=US
+
+For IOS: https://apps.apple.com/us/app/expo-go/id982107779
+
+- And Then, copy the link < exp://exp.host/@developerfg/gymnesia > and 
+open Expo go app and paste that copied link 
+into the section of "Enter URL manually"
+ 
 ### ScreenShots
 
 <img 
